@@ -1,3 +1,17 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" John's .vimrc of awesomeness.                           "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Many (infact probably most) of the parts of this        "
+" config are not my own work, but have been stolen        "
+" from other dotfiles and other stuff hanging around      "
+" the web. While I haven't given credit (mainly because   "
+" my vimrc is the amalgamation of about 3 months of       "
+" incremental improvement based on need), I give out      "
+" muchos-respectos to all those who I stole code snippets "
+" from. Thanks collective community!                      "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 filetype plugin indent on
 syntax on
 set noexpandtab
@@ -128,6 +142,7 @@ vnoremap <silent> * :<C-U>
   \gvy/<C-R><C-R>=substitute(
   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
+
 " -- Use # in visual mode to search backwards for the highlighted
 "    text within the document.
 vnoremap <silent> # :<C-U>
