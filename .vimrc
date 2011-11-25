@@ -10,7 +10,7 @@ set nowrap
 " -- display tabs and trailing spaces
 set list
 "set listchars=tab:»⋅,trail:⋅,nbsp:⋅
-set listchars=tab:→⋅,trail:⋅,nbsp:⋅
+set listchars=tab:→⋅,trail:✜,nbsp:⋅
 set list
 
 set incsearch   "find the next match as we type the search
@@ -57,6 +57,17 @@ if has("gui_macvim")
 endif
 
 cabbr te tabedit
+
+" -- Trailing spaces are now coloured green
+hi ExtraWhitespace guifg=#5fdf5f
+" -- Define whitespace when entering the buffer
+au BufEnter * match ExtraWhitespace /\s\+$/
+" -- Define whitespace when inserting text
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" -- Define whitespace when leaving insert mode
+au InsertLeave * match ExtraWhiteSpace /\s\+$/
+" -- lastly, define the colour of non-trailing tabs
+"    (Not as lurid as trailing space - a nice quiet grey).
 hi SpecialKey guifg=#3a3a3a
 
 " --- Ruby Stuff
