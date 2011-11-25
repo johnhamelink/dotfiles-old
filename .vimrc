@@ -27,12 +27,12 @@ set t_Co=256
 
 " -- display a warning if fileformat isnt unix
 set statusline+=%#warningmsg#
-set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+	set statusline+=%{&ff!='unix'?'['.&ff.']':''}
 set statusline+=%*
 
 " -- display a warning if there's a syntax problem
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 set statusline+=%h      "help file flag
@@ -57,6 +57,7 @@ if has("gui_macvim")
 endif
 
 cabbr te tabedit
+hi SpecialKey guifg=#3a3a3a
 
 " --- Ruby Stuff
 au BufNew,BufRead Gemfile set syntax=ruby
