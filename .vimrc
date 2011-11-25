@@ -9,7 +9,8 @@ set nowrap
 
 " -- display tabs and trailing spaces
 set list
-set listchars=tab:»⋅,trail:⋅,nbsp:⋅
+"set listchars=tab:»⋅,trail:⋅,nbsp:⋅
+set listchars=tab:→⋅,trail:⋅,nbsp:⋅
 set list
 
 set incsearch   "find the next match as we type the search
@@ -26,12 +27,12 @@ set t_Co=256
 
 " -- display a warning if fileformat isnt unix
 set statusline+=%#warningmsg#
-	set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
 set statusline+=%*
 
 " -- display a warning if there's a syntax problem
 set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 set statusline+=%h      "help file flag
