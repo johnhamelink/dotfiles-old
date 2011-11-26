@@ -20,15 +20,22 @@ set shiftwidth=2
 set showtabline=2
 set number
 set nowrap
+set ruler
+set nocp
+
 
 " -- display tabs and trailing spaces
 set list
-"set listchars=tab:»⋅,trail:⋅,nbsp:⋅
 set listchars=tab:→⋅,trail:✜,nbsp:⋅
 set list
 
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
+
+" -- Tab completion
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+
 
 " -- Mouse settings for terminal
 set mouse=a
@@ -57,16 +64,30 @@ set statusline+=%m      "modified flag
 " --- Autocompletion stuff
 set complete-=k complete+=k
 
-" --- NERDTree Stuff
+" --- Toggle NERDTree when the § key
+"     is pressed in order to allow
+"     easy navigation.
 map § :NERDTreeToggle Sites<CR>
+
+" --- Set tagbar to behave similarly to
+"     NERDTree, then set ± to toggle it.
+let g:tagbar_autofocus = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_usearrows = 1
+let g:tagbar_autoshowtag = 1
+map ± :TagbarToggle<CR>
 
 " --- Pretty stuff
 colorscheme xoria256
 
 if has("gui_macvim")
+	" Get rid of menubars that
+	" are visible by default.
 	set fuopt+=maxhorz
 	set guioptions-=T
-	"	set transparency=7
+
+	"	Set the font to something
+	"	nicer than the defaults
 	set guifont=Monaco:h12
 endif
 
@@ -109,6 +130,8 @@ au FileType javascript setl fen
 
 " Auto-format JSON
 autocmd FileType json set equalprg=json_reformat
+" Colourise JSON using the javascript syntax
+autocmd fileType json set syntax=javascript
 
 " Lets save and load folding options, otherwise it's a pain in the ass!
 au BufWinLeave * silent! mkview
@@ -150,3 +173,17 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+" -- Automatic pipe-delimited table tabulariser (Courtesy Tim Pope)
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
