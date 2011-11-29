@@ -41,25 +41,31 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set mouse=a
 set ttymouse=xterm2
 
+" -- Force myself to use the correct keys!
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
 
 " -- tell the term ir has 256 colors available
 set t_Co=256
 
 
-" -- display a warning if fileformat isnt unix
-set statusline+=%#warningmsg#
-	set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-set statusline+=%*
+"" -- display a warning if fileformat isnt unix
+"set statusline+=%#warningmsg#
+	"set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+"set statusline+=%*
 
-" -- display a warning if there's a syntax problem
+"" -- display a warning if there's a syntax problem
 set statusline+=%#warningmsg#
 	set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
-set statusline+=%r      "read only flag
-set statusline+=%m      "modified flag
+"set statusline+=%h      "help file flag
+"set statusline+=%y      "filetype
+"set statusline+=%r      "read only flag
+"set statusline+=%m      "modified flag
 
 " --- Autocompletion stuff
 set complete-=k complete+=k
@@ -74,6 +80,7 @@ map § :NERDTreeToggle Sites<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_singleclick = 1
 let g:tagbar_usearrows = 1
+let g:tagbar_compact = 1
 let g:tagbar_autoshowtag = 1
 map ± :TagbarToggle<CR>
 
@@ -112,7 +119,7 @@ au BufNew,BufRead irb_tempfile.rb.* set syntax=ruby
 " --- JS Stuff
 let $JS_CMD='node'
 " JS code folding that works:
-function! JavaScriptFold() 
+function! JavaScriptFold()
     setl foldmethod=syntax
     setl foldlevelstart=1
     syn sync fromstart
@@ -187,3 +194,28 @@ function! s:align()
   endif
 endfunction
 
+" ## automatically source the vimrc file after saving it changes appear
+" without restarting vim
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+" When saving a file trailing whitespace will automatically removed
+augroup DeleteTrailingWhitespaces
+  autocmd!
+  " remember the position using ks| |'s
+  autocmd BufWritePre * |call DeleteTrailingWhitespaces()|
+augroup END
+
+function! DeleteTrailingWhitespaces()
+ let l = line(".")
+ let c = col(".")
+ execute "%s/\\s\\+$//ge"
+ let last_search_removed_from_history = histdel('s', -1)
+ call cursor(l, c)
+endfunction
+
+
+if exists("t:NERDTreeBufName")
+	map <silent> <space> <CR>
+endif
