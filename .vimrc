@@ -21,6 +21,7 @@ set showtabline=2
 set number
 set nowrap
 set ruler
+set colorcolumn=80
 set nocp
 
 
@@ -73,7 +74,13 @@ set complete-=k complete+=k
 " --- Toggle NERDTree when the § key
 "     is pressed in order to allow
 "     easy navigation.
-map § :NERDTreeToggle Sites<CR>
+set autochdir
+let NERDTreeChDirMode=2
+map § :NERDTreeToggle .<CR>
+" --- When opening a new tab, assume the PWD
+"     of the previously focussed tab
+au TabEnter silent! lcd g:path_frombefore
+au TabLeave silent! let g:path_frombefore=expand("%:p:h")
 
 " --- Set tagbar to behave similarly to
 "     NERDTree, then set ± to toggle it.
@@ -112,9 +119,15 @@ au InsertLeave * match ExtraWhiteSpace /\s\+$/
 "    (Not as lurid as trailing space - a nice quiet grey).
 hi SpecialKey guifg=#3a3a3a
 
+hi ColorColumn guibg=#3a3a3a
+
+
 " --- Ruby Stuff
 au BufNew,BufRead Gemfile set syntax=ruby
 au BufNew,BufRead irb_tempfile.rb.* set syntax=ruby
+
+" --- Jade syntax
+au BufNew,BufRead *.jade set filetype=jade
 
 " --- JS Stuff
 let $JS_CMD='node'
