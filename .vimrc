@@ -23,7 +23,8 @@ set nowrap
 set ruler
 set colorcolumn=80
 set nocp
-
+set nobackup
+set noswapfile
 
 " -- display tabs and trailing spaces
 set list
@@ -43,10 +44,10 @@ set mouse=a
 set ttymouse=xterm2
 
 " -- Force myself to use the correct keys!
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+map <Left> :echoe "Use h"<CR>
+map <Right> :echoe "Use l"<CR>
+map <Up> :echoe "Use k"<CR>
+map <Down> :echoe "Use j"<CR>
 
 
 " -- tell the term ir has 256 colors available
