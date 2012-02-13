@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/john/Sites/Wood'
-let g:netrw_dirhist_2='/Users/john/Sites/coffeelottery/node'
-let g:netrw_dirhist_3='/Users/john/Sites/accountDrawer'
-let g:netrw_dirhist_4='/Users/john/Sites/konto'
-let g:netrw_dirhist_5='/Users/john/.dotfiles/.vim'
-let g:netrw_dirhist_6='/Users/john/Sites/konto'
