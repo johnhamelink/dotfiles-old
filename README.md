@@ -19,6 +19,7 @@ Installation:
 The installation is relatively simple:
 
     git clone git://github.com/johnhamelink/dotfiles.git ~/.vim
+	ln -s ~/.vim/bundle/dbgp-client/plugin/debugger.py ~/.vim
     ln -s ~/.vim/vimrc ~/.vimrc
 
 That's all there is to it!
@@ -27,7 +28,7 @@ Submodules:
 ----------
 This vim config uses pathogen, and so it heavily relies on submodules. To update them, simply run:
 
-	cd .vim
+	cd ~/.vim
 	git submodule foreach git pull --force
 
 Lovely!
