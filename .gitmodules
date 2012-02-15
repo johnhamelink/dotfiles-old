@@ -73,3 +73,6 @@
 [submodule "bundle/dbgpclient"]
 	path = bundle/dbgpclient
 	url = https://github.com/garyaj/vim-dbgpclient.git
+[submodule "bundle/phpunit"]
+	path = bundle/phpunit
+	url = https://github.com/afternoon/vim-phpunit.git
