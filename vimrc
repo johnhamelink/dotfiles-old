@@ -18,6 +18,11 @@ set ttyfast
 
 
 """"""""""""""""""""""""""""""
+" => Explorer
+""""""""""""""""""""""""""""""
+let g:netrw_list_hide= '.*\.swp$,.DS_Store,.localized'
+
+""""""""""""""""""""""""""""""
 " => Tabbing and indenting
 """"""""""""""""""""""""""""""
 set tabstop=4     " Number of spaces a tab is worth
@@ -249,7 +254,7 @@ let g:gist_private = 1                                  " Set the Gist to privat
 " => Command-T
 """"""""""""""""""""""""""""""
 let g:CommandTMaxHeight = 15         " Set command-t's height to 15
-set wildignore+=*.o,*.obj,.git,*.pyc " Ignore random crap nobody wants to read.
+set wildignore+=.DS_Store,.localized*.o,*.obj,.git,*.pyc " Ignore random crap nobody wants to read.
 
 
 """"""""""""""""""""""""""""""
