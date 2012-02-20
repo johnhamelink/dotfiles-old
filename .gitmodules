@@ -76,3 +76,9 @@
 [submodule "bundle/phpunit"]
 	path = bundle/phpunit
 	url = https://github.com/afternoon/vim-phpunit.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
