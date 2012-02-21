@@ -13,8 +13,12 @@ filetype on
 """"""""""""""""""""""""""""""
 syntax on
 filetype plugin indent on
-set nocompatible
-set ttyfast
+set nocompatible " We don't need strict vi compatibility.
+set ttyfast " Tells vim we have a fast connection to the terminal
+" Turn off 'Press enter to continue' dialogs
+" by truncating the message to fit in the space
+" allocated.
+set shortmess=at
 
 
 """"""""""""""""""""""""""""""
@@ -141,6 +145,8 @@ if has("gui_macvim")       " If we're running Macvim
 
         set guifont=Monaco:h12 " Set the font to something nicer than the defaults
         set fuoptions=maxvert,maxhorz " Full screen means FULL screen
+        " Turn off the visual/audio bell
+        set vb t_vb=
 endif
 
 
@@ -177,13 +183,13 @@ autocmd fileType json set syntax=javascript " Colourise JSON using the javascrip
 """"""""""""""""""""""""""""""
 " => Source Control
 """"""""""""""""""""""""""""""
-autocmd filetype svn,*commit* setlocal spell " -- spell check when writing commit logs
+autocmd filetype svn,*commit* setlocal spell " Spell check when writing commit logs
 
 
 """"""""""""""""""""""""""""""
 " => vimrc
 """"""""""""""""""""""""""""""
-" automatically source the vimrc file after saving it changes appear
+" Automatically source the vimrc file after saving it changes appear
 " without restarting vim
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
@@ -253,7 +259,7 @@ let g:gist_private = 1                                  " Set the Gist to privat
 """"""""""""""""""""""""""""""
 " => Command-T
 """"""""""""""""""""""""""""""
-let g:CommandTMaxHeight = 15         " Set command-t's height to 15
+let g:CommandTMaxHeight = 15                             " Set command-t's height to 15
 set wildignore+=.DS_Store,.localized*.o,*.obj,.git,*.pyc " Ignore random crap nobody wants to read.
 
 
