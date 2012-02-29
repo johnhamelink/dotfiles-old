@@ -249,18 +249,18 @@ set tags+=./tags; " Look for tags file recursively backwards
 " When sending code, copy
 " resultant URL
 " to the clipboard.
-let g:github_token = '51cd5d19cc9e6c6d9452b05b79a94808' " Set your github token
-let g:github_user  = 'johnhamelink'                     " Set your username
-let g:gist_detect_filetype = 1                          " Set the filetype detection to on, so your paste is syntax highlighted
-let g:gist_clip_command = 'pbcopy'                      " Set the command used to send the URL to the clipboard
-let g:gist_private = 1                                  " Set the Gist to private by default
+let g:github_token = ''            " Set your github token
+let g:github_user  = ''            " Set your username
+let g:gist_detect_filetype = 1     " Set the filetype detection to on, so your paste is syntax highlighted
+let g:gist_clip_command = 'pbcopy' " Set the command used to send the URL to the clipboard
+let g:gist_private = 1             " Set the Gist to private by default
 
 
 """"""""""""""""""""""""""""""
-" => Command-T
+" => Ctrlp
 """"""""""""""""""""""""""""""
-let g:CommandTMaxHeight = 15                             " Set command-t's height to 15
-set wildignore+=.DS_Store,.localized*.o,*.obj,.git,*.pyc " Ignore random crap nobody wants to read.
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so     " Hide version control dirs we don't care about
+map <leader>h :CtrlPMRU<CR>
 
 
 """"""""""""""""""""""""""""""
