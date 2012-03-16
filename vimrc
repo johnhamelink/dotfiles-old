@@ -15,10 +15,6 @@ syntax on
 filetype plugin indent on
 set nocompatible " We don't need strict vi compatibility.
 set ttyfast " Tells vim we have a fast connection to the terminal
-" Turn off 'Press enter to continue' dialogs
-" by truncating the message to fit in the space
-" allocated.
-set shortmess=at
 
 
 """"""""""""""""""""""""""""""
@@ -131,7 +127,6 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Colour Schemes
 """"""""""""""""""""""""""""""
-set t_Co=256        " Allow the terminal 256 colours if it can do it
 colorscheme mustang " Set the theme to mustang
 
 if has("gui_macvim")       " If we're running Macvim
@@ -172,6 +167,14 @@ map <Right> :echoe "Use l"<CR>
 map <Up> :echoe "Use k"<CR>
 map <Down> :echoe "Use j"<CR>
 
+
+""""""""""""""""""""""""""""""
+" => Console Vim
+""""""""""""""""""""""""""""""
+set t_Co=256 " Allow the terminal 256 colours if it can do it
+" Enable mouse scrolling - stops the buffer scrollback buffer
+" from misbehaving
+set mouse=a
 
 """"""""""""""""""""""""""""""
 " => JSON
@@ -251,9 +254,9 @@ set tags+=./tags; " Look for tags file recursively backwards
 " to the clipboard.
 let g:github_token = ''            " Set your github token
 let g:github_user  = ''            " Set your username
-let g:gist_detect_filetype = 1     " Set the filetype detection to on, so your paste is syntax highlighted
-let g:gist_clip_command = 'pbcopy' " Set the command used to send the URL to the clipboard
-let g:gist_private = 1             " Set the Gist to private by default
+let g:gist_detect_filetype = 1                          " Set the filetype detection to on, so your paste is syntax highlighted
+let g:gist_clip_command = 'pbcopy'                      " Set the command used to send the URL to the clipboard
+let g:gist_private = 1                                  " Set the Gist to private by default
 
 
 """"""""""""""""""""""""""""""
