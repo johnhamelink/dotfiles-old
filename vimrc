@@ -2,25 +2,28 @@
 """"""""""""""""""""""""""""""
 " => pathogen bundles
 """"""""""""""""""""""""""""""
-filetype off
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
-filetype on
+filetype off                               " Turn off filetype while we run the bundles
+call pathogen#helptags()                   " Generate all the helpfiles
+call pathogen#runtime_append_all_bundles() " Run the bundles
+filetype on                                " Turn filetype on again
 
 
 """"""""""""""""""""""""""""""
 " => Basics
 """"""""""""""""""""""""""""""
-syntax on
-filetype plugin indent on
+syntax on                 " Syntax mode!
+filetype plugin indent on " We want indenting
 set nocompatible " We don't need strict vi compatibility.
 set ttyfast " Tells vim we have a fast connection to the terminal
+set clipboard=unnamed     " Allows you to copy/paste from within the terminal
 
 
 """"""""""""""""""""""""""""""
 " => Explorer
 """"""""""""""""""""""""""""""
+" Hide .swp, .DS_Store and .localized files
 let g:netrw_list_hide= '.*\.swp$,.DS_Store,.localized'
+
 
 """"""""""""""""""""""""""""""
 " => Tabbing and indenting
@@ -84,7 +87,7 @@ set smartcase  " Only case about casing when caps are used
 set wildmenu                                     " Turn on tab completion
 set wildmode=list:longest,list:full              " Set it to the best sort
 set wildignore+=*.rbc,*.class,vendor/gems/*      " Ignore ruby stuff
-set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=.hg,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
@@ -95,7 +98,6 @@ set wildignore+=*.luac                           " Lua byte code
 set wildignore+=migrations                       " Django migrations
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
-
 
 """"""""""""""""""""""""""""""
 " => Traversal
@@ -262,9 +264,8 @@ let g:gist_private = 1                                  " Set the Gist to privat
 """"""""""""""""""""""""""""""
 " => Ctrlp
 """"""""""""""""""""""""""""""
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*.so     " Hide version control dirs we don't care about
 map <leader>h :CtrlPMRU<CR>
-
+let g:ctrlp_custom_ignore = '\.git$'
 
 """"""""""""""""""""""""""""""
 " => Statusline
