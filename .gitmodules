@@ -64,12 +64,6 @@
 [submodule "bundle/snipmate-node"]
 	path = bundle/snipmate-node
 	url  = https://github.com/jamescarr/snipmate-nodejs.git
-[submodule "bundle/dbgp-client"]
-	path = bundle/dbgp-client
-	url  = https://github.com/garyaj/vim-dbgpclient.git
-[submodule "bundle/dbgpclient"]
-	path = bundle/dbgpclient
-	url = https://github.com/garyaj/vim-dbgpclient.git
 [submodule "bundle/phpunit"]
 	path = bundle/phpunit
 	url  = https://github.com/afternoon/vim-phpunit.git
@@ -88,3 +82,6 @@
 [submodule "bundle/snipmate-snippets"]
     path = bundle/snipmate-snippets
     url  = https://github.com/honza/snipmate-snippets.git
+[submodule "bundle/DBGp-client"]
+	path = bundle/DBGp-client
+	url = https://github.com/vim-scripts/DBGp-client.git
