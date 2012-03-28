@@ -1,11 +1,39 @@
 John's Super-Duper Vim Config
 ==============================
 
+Features:
+---------
+
+- Uses ctrl+p to help you navigate to files quickly
+- Tagfiles are recursively searched up the filetree until one is found - this
+  gives automatic project-wide access to tagfiles, so you only need to generate one.
+- Powerline gives us a really cool bottom bar which adapts to the plugins you install and
+  the mode you are currently in.
+- Automatic JSON formatting
+- Support for debugging with XDebug
+- Inappropriate/stray whitespace detection and auto-deletion
+- Paste files to Gist.github.com by selecting text and running :Gist
+- Much, much more!
+
+
 Preview:
 --------
 
 ![Macvim for the terminal](http://i.imgur.com/8suZd.png)
+Macvim in the terminal, showing two split files being edited at the same time.
+
+The Red bars on the right are guides to which you should try not to let your code
+go past for readability's sake.
+
+On line 61 of the rightmost split, you can see that some stray whitespace has been
+highlighted. When the file  is saved, this whitespace will be stripped automatically.
+
+The "S>" in red on the bar on the leftmost split is depicting a problem that the linter
+has picked up.
+
 ![Macvim GUI](http://i.imgur.com/4pcaQ.png)
+Macvim GUI, depicting the slimline tabs as well as ctrl+p's brilliant file finding
+functionality.
 
 
 Preface:
