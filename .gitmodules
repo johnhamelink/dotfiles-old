@@ -22,9 +22,6 @@
 [submodule "bundle/coffee-script"]
 	path = bundle/coffee-script
 	url  = https://github.com/kchmck/vim-coffee-script.git
-[submodule "bundle/css-color"]
-	path = bundle/css-color
-	url  = https://github.com/skammer/vim-css-color.git
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url  = git://github.com/tpope/vim-fugitive.git
@@ -85,3 +82,6 @@
 [submodule "bundle/DBGp-client"]
 	path = bundle/DBGp-client
 	url = https://github.com/vim-scripts/DBGp-client.git
+[submodule "bundle/css-color"]
+	path = bundle/css-color
+	url = https://github.com/skammer/vim-css-color.git
