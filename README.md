@@ -4,8 +4,8 @@ John's Super-Duper Vim Config
 Preview:
 --------
 
-![Macvim for the terminal](http://d.pr/IepF)
-![Macvim GUI](http://d.pr/xfI2)
+![Macvim for the terminal](http://i.imgur.com/8suZd.png)
+![Macvim GUI](http://i.imgur.com/4pcaQ.png)
 
 
 Preface:
