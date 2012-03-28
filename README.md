@@ -1,6 +1,13 @@
 John's Super-Duper Vim Config
 ==============================
 
+Preview:
+--------
+
+![Macvim for the terminal](http://d.pr/IepF)
+![Macvim GUI](http://d.pr/xfI2)
+
+
 Preface:
 -------
 Some (ok, a lot) of the config options I have in my config have been snipped from
