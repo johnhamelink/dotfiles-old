@@ -49,6 +49,16 @@ Contribute:
 ----------
 Do you have an awesome contribution to my config? Submit a pull request!
 
+Dependencies:
+-------------
+My vim config has been tested to work on vim 7.2, but 7.3 or higher is recommended.
+It should work fine on both OSX and Linux, but if you have any problems please let me
+know, or contribute if you find a fix!
+
+Make sure your system has the following tools installed:
+
+ - cURL (OSX has this installed by default)
+
 Installation:
 ------------
 The installation is relatively simple:
