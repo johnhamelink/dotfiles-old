@@ -62,7 +62,8 @@ Submodules:
 ----------
 This vim config uses pathogen, and so it heavily relies on submodules. To update them, simply run:
 
-	cd ~/.vim
-	git submodule foreach git pull --force
+    cd ~/.vim
+    git submodule init
+    git submodule update --recursive
 
 Lovely!
