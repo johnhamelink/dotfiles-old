@@ -85,3 +85,6 @@
 [submodule "bundle/css-color"]
 	path = bundle/css-color
 	url = https://github.com/skammer/vim-css-color.git
+[submodule "bundle/phpdoc"]
+	path = bundle/phpdoc
+	url = git@github.com:johnhamelink/PhpDoc.git

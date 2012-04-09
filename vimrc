@@ -264,13 +264,19 @@ let g:gist_private = 1                                  " Set the Gist to privat
 """"""""""""""""""""""""""""""
 " => Ctrlp
 """"""""""""""""""""""""""""""
+" \h gives you history switching
 map <leader>h :CtrlPMRU<CR>
+" \b gives you buffer switching
+map <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore = '\.git$'
 
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
 set laststatus=2 " Always hide the statusline
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 
 """"""""""""""""""""""""""""""
