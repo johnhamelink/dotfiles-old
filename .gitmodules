@@ -87,4 +87,13 @@
 	url = https://github.com/skammer/vim-css-color.git
 [submodule "bundle/phpdoc"]
 	path = bundle/phpdoc
-	url = git@github.com:johnhamelink/PhpDoc.git
+	url = https://github.com/johnhamelink/PhpDoc.git
+[submodule "bundle/vim-tomorrow-theme"]
+	path = bundle/vim-tomorrow-theme
+	url = https://github.com/chriskempson/vim-tomorrow-theme.git
+[submodule "bundle/vim-conque"]
+	path = bundle/vim-conque
+	url = https://github.com/rygwdn/vim-conque.git
+[submodule "bundle/blade.vim"]
+	path = bundle/blade.vim
+	url = git://github.com/johnhamelink/blade.vim.git

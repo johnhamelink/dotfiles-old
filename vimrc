@@ -3,7 +3,7 @@
 " => pathogen bundles
 """"""""""""""""""""""""""""""
 filetype off                               " Turn off filetype while we run the bundles
-call pathogen#helptags()                   " Generate all the helpfiles
+"call pathogen#helptags()                   " Generate all the helpfiles
 call pathogen#runtime_append_all_bundles() " Run the bundles
 filetype on                                " Turn filetype on again
 
@@ -13,9 +13,12 @@ filetype on                                " Turn filetype on again
 """"""""""""""""""""""""""""""
 syntax on                 " Syntax mode!
 filetype plugin indent on " We want indenting
-set nocompatible " We don't need strict vi compatibility.
-set ttyfast " Tells vim we have a fast connection to the terminal
+set nocompatible          " We don't need strict vi compatibility.
+set ttyfast               " Tells vim we have a fast connection to the terminal
 set clipboard=unnamed     " Allows you to copy/paste from within the terminal
+set ttimeout              " Makes vim play nicely with tmux
+set ttimeoutlen=25        " Makes vim play nicely with tmux0
+set notimeout             " Makes vim play nicely with tmux
 
 
 """"""""""""""""""""""""""""""
@@ -129,7 +132,8 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Colour Schemes
 """"""""""""""""""""""""""""""
-colorscheme mustang " Set the theme to mustang
+"colorscheme mustang " Set the theme to mustang
+colorscheme Tomorrow-Night-Bright
 
 if has("gui_macvim")       " If we're running Macvim
         set fuopt+=maxhorz " Get rid of menubars that are visible by default.
