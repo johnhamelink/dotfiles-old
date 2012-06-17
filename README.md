@@ -76,4 +76,10 @@ This vim config uses pathogen, and so it heavily relies on submodules. To update
     git submodule init
     git submodule update --recursive
 
-Lovely!
+Powerline Fonts:
+----------------
+This vim config features powerline, which requires you to install some custom fonts.
+
+Download the fonts on ![This Page](https://gist.github.com/1595572), and you should be good to go (tested on macvim).
+
+All done: lovely!
