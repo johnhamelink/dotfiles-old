@@ -80,6 +80,6 @@ Powerline Fonts:
 ----------------
 This vim config features powerline, which requires you to install some custom fonts.
 
-Download the fonts on ![This Page](https://gist.github.com/1595572), and you should be good to go (tested on macvim).
+Download the fonts on [This Page](https://gist.github.com/1595572), and you should be good to go (tested on macvim).
 
 All done: lovely!
