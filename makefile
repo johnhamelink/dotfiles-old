@@ -1,7 +1,7 @@
 install:
-	ln -s ~/.zshrc zshrc
-	ln -s ~/.xdefaults xdefaults
-	ln -s ~/.vimrc vimrc
-	cp -R ~/.weechat weechat/
+	ln -s $(CURDIR)/zshrc ~/.zshrc 
+	ln -s $(CURDIR)/xdefaults ~/.xdefaults 
+	ln -s $(CURDIR)/vimrc ~/.vimrc 
+	cp -R $(CURDIR)/weechat/ ~/.weechat 
 osx:
 	./osx

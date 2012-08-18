@@ -97,3 +97,6 @@
 [submodule "bundle/blade.vim"]
 	path = bundle/blade.vim
 	url = git://github.com/johnhamelink/blade.vim.git
+[submodule "bundle/vundle"]
+	path = bundle/vundle
+	url = https://github.com/gmarik/vundle.git
