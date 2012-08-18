@@ -1,0 +1,88 @@
+!!!Cursor!!!
+
+Xcursor.theme: Vainilla-DMZ-AA Xcursor.size: 22
+
+!!!Color!!!
+
+!*color0:       #151515
+!*color8:       #8b8f93
+!*color1:       #a82200
+!*color9:       #ff3300
+!*color2:       #086870
+!*color10:      #0eb8c7
+!*color3:       #a86500
+!*color11:      #ff9900
+!*color4:       #30569c
+!*color12:      #4B86F3
+!*color5:       #655799
+!*color13:      #9e88f0
+!*color6:       #4ca4a8
+!*color14:      #73f7ff
+!*color7:       #888888
+!*color15:      #e1dddd
+
+!ObliviousGmnColors
+!black
+   *color0: #2E1F1F
+   *color8: #422D2D
+!red
+   *color1: #AA0E50
+   *color9: #BE0E50
+!green
+   *color2: #1DCC9F
+   *color10: #1FD9A9
+!yellow
+   *color3: #27C282
+   *color11: #2CDB93
+!blue
+   *color4: #7182A8
+   *color12: #8194BF
+!magenta
+   *color5: #A673A6
+   *color13: #7F5AA1
+!cyan
+   *color6: #6DA3A1
+   *color14: #669997
+!white
+   *color7: #B7BBBD
+   *color15: #D9D9D9
+
+!!!!Config Urxvt!!!
+
+URxvt.depth: 32
+!URxvt.background: rgba:1500/1500/1500/ffff
+URxxvt.background: #151515
+*background:   #151515
+*foreground:   white
+URxvt.font: xft: Terminus-12:hinting=true:antialias=true
+URxvt.boldFont: xft: Terminus-12-bold:hinting=true:antialias=true
+!URxvt*font:    -*-Terminus-medium-r-normal-*-8-*-*-*-*-*-*-*
+!URxvt*boldFont: -*-Terminus-bold-r-normal-*-8-*-*-*-*-*-*-*
+!URxvt.font: xft: Pragma TT:size=10
+!URxvt.font: xft: Pragma TT-10
+URxvt.letterSpace: 1
+URxvt.scrollBar: false
+Urxvt.secondaryScroll: true
+URxvt.scrollColor: #252525
+URxvt.cursorColor: #404040
+URxvt.underlineURLs: true
+URxvt.urlLauncher: /home/john/.urxvt/browser.sh
+
+Xft.autohint: 1
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+urxvt.termName: xterm-256color
+urxvt.saveLines: 512
+urxvt.geometry: 90x25
+urxvt.inheritPixmap: true
+urxvt.xftAntialias: true
+urxvt.jumpScroll: true
+urxvt.tintColor: white
+URxvt*internalBorder: 0
+urxvt.cursorBlink: false
+urxvt.borderless: true
