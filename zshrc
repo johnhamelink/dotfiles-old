@@ -3,119 +3,6 @@ ZSH=$HOME/.oh-my-zsh
 
 
 
-# af-magic.zsh-theme
-# afowler.zsh-theme
-# alanpeabody.zsh-theme
-# apple.zsh-theme
-# arrow.zsh-theme
-# aussiegeek.zsh-theme
-# awesomepanda.zsh-theme
-# bira.zsh-theme
-# blinks.zsh-theme
-# candy.zsh-theme
-# clean.zsh-theme
-# cloud.zsh-theme
-# crunch.zsh-theme
-# cypher.zsh-theme
-# dallas.zsh-theme
-# darkblood.zsh-theme
-# daveverwer.zsh-theme
-# dieter.zsh-theme
-# dogenpunk.zsh-theme
-# dpoggi.zsh-theme
-# dstufft.zsh-theme
-# dst.zsh-theme
-# duellj.zsh-theme
-# eastwood.zsh-theme
-# edvardm.zsh-theme
-# evan.zsh-theme
-# example.zsh-theme
-# fino-time.zsh-theme
-# fino.zsh-theme
-# fishy.zsh-theme
-# flazz.zsh-theme
-# fletcherm.zsh-theme
-# fox.zsh-theme
-# frisk.zsh-theme
-# funky.zsh-theme
-# fwalch.zsh-theme
-# gallifrey.zsh-theme
-# gallois.zsh-theme
-# garyblessington.zsh-theme
-# gentoo.zsh-theme
-# geoffgarside.zsh-theme
-# gnzh.zsh-theme
-# gozilla.zsh-theme
-# humza.zsh-theme
-# imajes.zsh-theme
-# jbergantine.zsh-theme
-# jispwoso.zsh-theme
-# jnrowe.zsh-theme
-# jonathan.zsh-theme
-# josh.zsh-theme
-# jreese.zsh-theme
-# jtriley.zsh-theme
-# juanghurtado.zsh-theme
-# kardan.zsh-theme
-# kennethreitz.zsh-theme
-# kolo.zsh-theme
-# kphoen.zsh-theme
-# lambda.zsh-theme
-# linuxonly
-# lukerandall.zsh-theme
-# macovsky-ruby.zsh-theme
-# macovsky.zsh-theme
-# maran.zsh-theme
-# mgutz.zsh-theme
-# mh.zsh-theme
-# mikeh.zsh-theme
-# miloshadzic.zsh-theme
-# minimal.zsh-theme
-# mortalscumbag.zsh-theme
-# mrtazz.zsh-theme
-# murilasso.zsh-theme
-# muse.zsh-theme
-# nanotech.zsh-theme
-# nebirhos.zsh-theme
-# nicoulaj.zsh-theme
-# norm.zsh-theme
-# obraun.zsh-theme
-# philips.zsh-theme
-# pmcgee.zsh-theme
-# pygmalion.zsh-theme
-# re5et.zsh-theme
-# rgm.zsh-theme
-# risto.zsh-theme
-# rixius.zsh-theme
-# rkj-repos.zsh-theme
-# rkj.zsh-theme
-# robbyrussell.zsh-theme
-# sammy.zsh-theme
-# simple.zsh-theme
-# skaro.zsh-theme
-# smt.zsh-theme
-# Soliah.zsh-theme
-# sorin.zsh-theme
-# sporty_256.zsh-theme
-# steeef.zsh-theme
-# sunaku.zsh-theme
-# sunrise.zsh-theme
-# superjarin.zsh-theme
-# suvash.zsh-theme
-# takashiyoshida.zsh-theme
-# terminalparty.zsh-theme
-# theunraveler.zsh-theme
-# tjkirch.zsh-theme
-# tonotdo.zsh-theme
-# trapd00r.zsh-theme
-# wedisagree.zsh-theme
-# wezm.zsh-theme
-# wezm+.zsh-theme
-# wuffers.zsh-theme
-# xiong-chiamiov-plus.zsh-theme
-# xiong-chiamiov.zsh-theme
-# zhann.zsh-theme
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -176,7 +63,7 @@ bindkey "\e[F" end-of-line
 bindkey '^i' expand-or-complete-prefix
 
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/john/Public/scripts
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/john/Public/scripts:/home/john/.vim/scripts
 export NODE_PATH=/usr/lib/node_modules
 
 alias nvim="(urxvt -name vim -e vim) &"
