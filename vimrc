@@ -138,10 +138,13 @@ endfunction
 " => Colourscheme
 """"""""""""""""""""""""""""""
 " Our lovely theme
-Bundle 'chriskempson/vim-tomorrow-theme'
-colorscheme Tomorrow-Night-Bright
+"Bundle 'chriskempson/vim-tomorrow-theme'
+"colorscheme Tomorrow-Night-Bright
+Bundle 'KevinGoodsell/vim-csexact'
+Bundle 'vydark'
+colorscheme vydark
 
-if has("gui_macvim")              " If we're running Macvim
+if has("gui_running")
     set fuopt+=maxhorz            " Get rid of menubars that are visible by default.
     set guioptions-=T             " Remove the toolbar
     set guioptions-=r
@@ -160,7 +163,7 @@ endif
 """"""""""""""""""""""""""""""
 " => Healthy Habits
 """"""""""""""""""""""""""""""
-if has("gui_macvim") " If we're running Macvim
+if has("gui_running") " If we're running Macvim
     " Fuck you, help key.
     noremap  <F1> :set invfullscreen<CR>
     inoremap <F1> <ESC>:set invfullscreen<CR>a
