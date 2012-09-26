@@ -287,7 +287,11 @@ Bundle 'mattn/gist-vim'
 let g:github_token = ''             " Set your github token
 let g:github_user  = 'johnhamelink' " Set your username
 let g:gist_detect_filetype = 1      " Set the filetype detection to on, so your paste is syntax highlighted
-let g:gist_clip_command = 'pbcopy'  " Set the command used to send the URL to the clipboard
+if has("mac")
+    let g:gist_clip_command = 'pbcopy' " Set the command used to send the URL to the clipboard
+elseif has ("unix")
+    let g:gist_clip_command = 'xclip'  " Set the command used to send the URL to the clipboard
+endif
 let g:gist_private = 1              " Set the Gist to private by default
 
 
