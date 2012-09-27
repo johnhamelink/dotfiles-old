@@ -1,3 +1,4 @@
 .netrwhist
 bundle/*
 tmp/
+weechat/logs/*
