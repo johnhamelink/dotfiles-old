@@ -143,6 +143,8 @@ endfunction
 Bundle 'KevinGoodsell/vim-csexact'
 Bundle 'vydark'
 colorscheme vydark
+let g:csexact_rgbtxt = $HOME . "/.vim/extras/rgb.txt"
+
 
 if has("gui_running")
     set fuopt+=maxhorz            " Get rid of menubars that are visible by default.
