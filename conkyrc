@@ -1,0 +1,50 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2010 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+background no
+out_to_x no
+out_to_console yes
+update_interval 2
+total_run_times 0
+uppercase no
+short_units yes
+use_spacer none
+cpu_avg_samples 2
+net_avg_samples 2
+
+TEXT
+${exec ~/.config/wmfs/scripts/rsyncchecker.sh}\
+${exec ~/.config/wmfs/scripts/paconkychecker.sh}\
+^i[right;0;0;/home/john/.config/wmfs/icons/mem.png](1;spawn;~/.config/wmfs/scripts/dzen_sensors.sh 600) \
+^s[right;\#bbbbbb; $memperc% :: ](1;spawn;~/.config/wmfs/scripts/dzen_sensors.sh 600)\
+^i[right;0;0;/home/john/.config/wmfs/icons/cpu.png](1;spawn;~/.config/wmfs/scripts/dzen_sensors.sh 530) \
+^s[right;\#bbbbbb; $cpu% (](1;spawn;~/.config/wmfs/scripts/dzen_sensors.sh 530)\
+^i[right;0;0;/home/john/.config/wmfs/icons/temp.png](1;spawn;~/.config/wmfs/scripts/dzen_sensors.sh 530) \
+^s[right;\#bbbbbb; ${platform coretemp.0 temp 1}c) :: ](1;spawn;~/.config/wmfs/scripts/dzen_sensors.sh 530)\
+^i[right;0;0;/home/john/.config/wmfs/icons/ship.png](1;spawn;~/.config/wmfs/scripts/dzen_uname.sh 420)\
+^s[right;\#bbbbbb; $kernel ](1;spawn;~/.config/wmfs/scripts/dzen_uname.sh 420)\
+^s[right;\#bbbbbb;:: ]\
+^i[right;0;0;/home/john/.config/wmfs/icons/clock.png](1;spawn;~/.config/wmfs/scripts/dzen_calendar.sh 150) \
+^s[right;\#bbbbbb; ${time %a, %e %B %G %H:%M:%S %p}](1;spawn;~/.config/wmfs/scripts/dzen_calendar.sh 150)\

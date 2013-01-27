@@ -1,26 +1,33 @@
-/*install: installUrxvt installWeechat installZSH installVim*/
-install: installWeechat installVim
-uninstall: uninstallUrxvt uninstallWeechat uninstallZSH uninstallVim
-
-installUrxvt:
+installWM:
+	ln -s $(CURDIR)/wmfs ~/.config
+	ln -s $(CURDIR)/conkyrc ~/.conkyrc
 	ln -s $(CURDIR)/xdefaults ~/.xdefaults
 
-uninstallUrxvt:
-	rm -f ~/.xdefaults
+installZSH:
+	# Clone zprezto
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto
+	# Install custom files.
+	ln -s $(CURDIR)/zsh/zlogin ~/.zlogin
+	ln -s $(CURDIR)/zsh/zlogout ~/.zlogout
+	ln -s $(CURDIR)/zsh/zpreztorc ~/.zpreztorc
+	ln -s $(CURDIR)/zsh/zprofile ~/.zprofile
+	ln -s $(CURDIR)/zsh/zshenv ~/.zshenv
+	ln -s $(CURDIR)/zsh/zshrc ~/.zshrc
 
+uninstallZSH:
+	rm -rf ~/.zlogin
+	rm -rf ~/.zlogout
+	rm -rf ~/.zpreztorc
+	rm -rf ~/.zprofile
+	rm -rf ~/.zshenv
+	rm -rf ~/.zshrc
+	rm -rf ~/.zprezto
 
 installWeechat:
 	ln -s $(CURDIR)/weechat ~/.weechat
 
 uninstallWeechat:
 	rm -rf ~/.weechat
-
-
-installZSH:
-	ln -s $(CURDIR)/zshrc ~/.zshrc
-
-uninstallZSH:
-	rm -f ~/.zshrc
 
 installVim:
 	# Create the symlinks to vim
