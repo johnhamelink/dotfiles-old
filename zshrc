@@ -14,8 +14,8 @@ antigen bundle archlinux
 antigen bundle command-not-found
 antigen bundle cp
 antigen bundle fasd
-
 antigen bundle docker
+antigen bundle zsh-users/zsh-completions src
 
 
 # Make the terminal a nicer place to be: ZSH Edition
@@ -52,5 +52,5 @@ alias pacman="pacaur"
 alias gksu="gksudo"
 alias open="xdg-open"
 
-alias server="ruby -rwebrick -e'WEBrick::HTTPServer.new(:Port => 3001, :DocumentRoot => Dir.pwd).start'"
+alias server="ruby -run -e httpd . -p 3000"
 alias ctags-ruby="ctags -R --exclude=.git --exclude=log --exclude=doc --exclude=tmp "$@" ~/.rvm/gems/`rvm current`/*"
