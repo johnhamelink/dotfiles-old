@@ -78,8 +78,8 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.jbuilder\\'" . ruby-mode))
 ; Add ruby modes
-(add-hook 'ruby-mode-hook 'ruby-end-mode)
-(add-hook 'ruby-mode-hook 'ruby-electric-mode)
+;(add-hook 'ruby-mode-hook 'ruby-end-mode)
+;(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 (add-hook 'ruby-mode-hook
           (lambda () (flyspell-prog-mode)))
 
@@ -93,4 +93,8 @@
 (projectile-global-mode)
 (global-set-key (kbd "C-c h") 'helm-projectile)
 
+; Helm (ctrl-p for emacs)
 (helm-mode 1)
+
+(setq yas-snippet-dirs '("~/.emacs.d/snippets/rails-snippets" "~/.emacs.d/snippets/yasnippets"))
+(yas-global-mode 1)
