@@ -30,6 +30,9 @@ antigen bundle git
 antigen bundle git-extras
 antigen bundle bobthecow/git-flow-completion
 
+# Automated environment variable loading. Yummy yummy.
+antigen bundle johnhamelink/env-zsh
+
 # Make the prompt pretty :3
 antigen theme johnhamelink/norm-zsh norm
 
@@ -53,4 +56,9 @@ alias gksu="gksudo"
 alias open="xdg-open"
 
 alias server="ruby -run -e httpd . -p 3000"
-alias ctags-ruby="ctags -R --exclude=.git --exclude=log --exclude=doc --exclude=tmp "$@" ~/.rvm/gems/`rvm current`/*"
+
+ctags_ruby (){
+  echo "Running ctags on current directory as well as all the bundled gems..."
+  ctags -R --exclude=.git --exclude=log --exclude=doc --exclude=tmp ./ $(bundle list --paths)
+  echo "Done"
+}
