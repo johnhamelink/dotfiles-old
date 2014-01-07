@@ -1,63 +1,89 @@
-set nocompatible
-filetype off
+if has('vim_starting')
+  set nocompatible
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Let Vundle handle itsself!
-Bundle 'gmarik/vundle'
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 
 " Show a pretty startup page with bookmarks,
 " recently used files and sessions.
-Bundle 'mhinz/vim-startify'
+NeoBundle 'mhinz/vim-startify'
 
+" Lean & mean status/tabline for vim that's
+" Light as air
+NeoBundle 'bling/vim-airline'
+set laststatus=2
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 0
 
 " Syntax Highlighting for ActiveRecord,
 " Rake Interface, Rails CLI Interface,
 " Concern extraction (:Rextract {file}),
 " Allows 'gf' to know about partials, fixtures,
 " and more.
-Bundle 'tpope/vim-rails' 
+NeoBundle 'tpope/vim-rails'
 " Vim-rake lets us use some of the
 " rails functionality on non-rails
 " ruby projects.
-Bundle 'tpope/vim-rake'
+NeoBundle 'tpope/vim-rake'
 
 " Various ruby-specific changes
-Bundle 'vim-ruby/vim-ruby'
+NeoBundle 'vim-ruby/vim-ruby'
 
-" :Bundle interface, supports 'gf' inside
+" :NeoBundle interface, supports 'gf' inside
 " Gemfile.lock, and handy syntax highlighting
 " for uninstalled gems.
-Bundle 'tpope/vim-bundler'
+NeoBundle 'tpope/vim-bundler'
+
+" Add autocompletion for golang
+NeoBundle 'Blackrush/vim-gocode'
 
 " Add a gutter with git changes in it.
-Bundle 'airblade/vim-gitgutter'
+NeoBundle 'airblade/vim-gitgutter'
+
+" Make merges nice in vim
+NeoBundle 'sjl/splice.vim'
 
 " Adds 'end' to 'def', 'if', 'do'
-Bundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-endwise'
 
 " Makes columnising easy
-Bundle "godlygeek/tabular"
+NeoBundle "godlygeek/tabular"
 
 " Surround stuff with stuff
-Bundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-surround'
 
-" Fuzzy finder supporting file, 
-" buffer, MRU, history, and a 
+" Fuzzy finder supporting file,
+" buffer, MRU, history, and a
 " mixture.
-Bundle 'kien/ctrlp.vim'
+NeoBundle 'kien/ctrlp.vim'
 
-" Supercharged autocompletion
-Bundle 'Valloric/YouCompleteMe'
+" Code snippets engine
+NeoBundle 'drmingdrmer/xptemplate'
+
+" Custom xptemplate snippets
+NeoBundle 'johnhamelink/custom-xptemplate-snippets'
 
 " Syntax highlighting for scss files.
-Bundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'cakebaker/scss-syntax.vim'
 
 
 " Gist integration
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'
 " When sending code, copy resultant URL to the clipboard
 if has("mac")
   let g:gist_clip_command = 'pbcopy'
@@ -68,10 +94,9 @@ let g:gist_open_browser_after_post = 1
 " Private gists by default
 let g:gist_private = 1
 
-" Nice theme - 'rtp : 'vim/' makes sure that the 
-" vim subdir is used for this plugin.
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-colorscheme Tomorrow-Night
+NeoBundle 'chriskempson/base16-vim'
+set background=dark
+colorscheme base16-ocean
 
 " Define what number of spaces a tab in a file counts for
 set tabstop=2
@@ -80,7 +105,7 @@ set tabstop=2
 " with the reindent operations (<< and >>).
 set shiftwidth=2
 
-" Set the number of spaces that a <Tab> counts for while 
+" Set the number of spaces that a <Tab> counts for while
 " performing editing operations, like inserting <Tab> or using
 " <BS>.
 set softtabstop=2
@@ -96,11 +121,16 @@ set autoindent
 " indent to start on. Apparently.
 set smartindent
 
+" Override the defaults with a .editorconfig file if
+" one exists.
+NeoBundle 'editorconfig/editorconfig-vim'
+
 " No word-wrap
 set nowrap
 
 " Show line numbers
 set number
+
 
 " Automatically cd into the dir
 " of the file in the buffer.
@@ -117,7 +147,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set wildmode=longest:full,list:full
 
 " Don't beep at me!
-set visualbell 
+set visualbell
 set noerrorbells
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
@@ -136,17 +166,18 @@ let g:mapleader="\\"
 
 
 if has("gui_running")
+  set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
   set guioptions-=e
-	set guioptions-=m
-	set guioptions-=T
-	set guioptions-=t
-	set guioptions-=r
-	set guioptions-=L
+  set guioptions-=m
+  set guioptions-=T
+  set guioptions-=t
+  set guioptions-=r
+  set guioptions-=L
   set guicursor+=a:blinkon0
   " Show the internal vim tabs only if there's >1 tab open
-  set stal=1 
+  set stal=1
   " Full screen means FULL screen
-  set fuoptions=maxvert,maxhorz 
+  set fuoptions=maxvert,maxhorz
   " Turn off the visual bell
   set vb t_vb=
 endif
@@ -163,11 +194,7 @@ au VimResized * :wincmd =
 nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
-"if has("autocmd")
-"  autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-"  autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-"  autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-"endif
-
 filetype plugin indent on
 
+" Installation Check.
+NeoBundleCheck
