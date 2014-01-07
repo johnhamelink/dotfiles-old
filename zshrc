@@ -1,48 +1,10 @@
 source ~/.antigen/antigen.zsh
 
-antigen use oh-my-zsh
-
-# Ruby/Rails stuff
-antigen bundle bundler
-antigen bundle rvm
-antigen bundle gem
-antigen bundle rails4
-antigen bundle johnhamelink/rvm-zsh
-
-# Make the terminal a nicer place to be: Linux Edition
-antigen bundle archlinux
-antigen bundle command-not-found
-antigen bundle cp
-antigen bundle fasd
-antigen bundle docker
-antigen bundle zsh-users/zsh-completions src
-
-
-# Make the terminal a nicer place to be: ZSH Edition
-# "If you want to use the zsh-syntax-highlighting script along with
-# history-substring-search, then make sure that you load it *before* you load
-# this script:"
-antigen bundle zsh-users/zsh-syntax-highlighting 
-antigen bundle history-substring-search
-
-# Git stuff
-antigen bundle git
-antigen bundle git-extras
-antigen bundle bobthecow/git-flow-completion
-
-# Automated environment variable loading. Yummy yummy.
-antigen bundle johnhamelink/env-zsh
-
-# Make the prompt pretty :3
-antigen theme johnhamelink/norm-zsh norm
-
-antigen apply
-
 export EDITOR=vim
 
 git-export() {
-	git clone --depth=1 "$@"
-	rm -rf "$2/.git"
+  git clone --depth=1 "$@"
+  rm -rf "$2/.git"
 }
 
 uploadImage (){
@@ -51,14 +13,64 @@ uploadImage (){
     shift
 }
 
-alias pacman="pacaur"
-alias gksu="gksudo"
-alias open="xdg-open"
-
-alias server="ruby -run -e httpd . -p 3000"
-
 ctags_ruby (){
   echo "Running ctags on current directory as well as all the bundled gems..."
   ctags -R --exclude=.git --exclude=log --exclude=doc --exclude=tmp ./ $(bundle list --paths)
   echo "Done"
 }
+
+
+alias server="ruby -run -e httpd . -p 3000"
+
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+
+  # Java
+  gradle
+
+  # Ruby/Rails stuff
+  bundler
+  rvm
+  gem
+  rails
+  johnhamelink/rvm-zsh
+
+  # Make the terminal a nicer place to be: Linux Edition
+  command-not-found
+  cp
+  docker
+  zsh-users/zsh-completions src
+  johnhamelink/env-zsh
+
+
+  # Make the terminal a nicer place to be: ZSH Edition
+  # "If you want to use the zsh-syntax-highlighting script along with
+  # history-substring-search, then make sure that you load it *before* you load
+  # this script:"
+  zsh-users/zsh-syntax-highlighting
+  history-substring-search
+
+  # Git stuff
+  git
+  git-extras
+  bobthecow/git-flow-completion
+
+EOBUNDLES
+
+
+# Make the prompt pretty :3
+antigen theme johnhamelink/norm-zsh norm
+
+# Source os-specific files.
+envfile="$HOME/.dotfiles/zsh/`uname`.sh"
+if [ -r $envfile ]; then
+  . $envfile
+fi
+
+envfile="$HOME/.dotfiles/zsh/`uname -n`.sh"
+if [ -r $envfile ]; then
+  . $envfile
+fi
+
+antigen apply
