@@ -2,6 +2,7 @@
 local gears  = require("gears")
 local awful  = require("awful")
 local rsync  = require("rsync")
+local sonos  = require("sonos")
 local pacman = require("pacman")
 awful.rules  = require("awful.rules")
 require("awful.autofocus")
@@ -115,6 +116,9 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibox
 -- Create a textclock widget
+
+sonos = wibox.widget.textbox()
+vicious.register(sonos, doSonosNowPlaying, "$1", 15)
 
 rsync = wibox.widget.textbox()
 vicious.register(rsync, doSync, "$1", 5)
@@ -233,6 +237,7 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    if s ~= 1 then right_layout:add(sonos) end
     if s ~= 1 then right_layout:add(rsync) end
     if s ~= 1 then right_layout:add(pacman) end
     right_layout:add(separator)
