@@ -164,9 +164,16 @@ set magic
 let mapleader="\\"
 let g:mapleader="\\"
 
-
 if has("gui_running")
-  set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
+  " On OSX, set the font to Meslo regular (for powerline) with height = 11
+  if has("mac")
+    set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
+  " On Linux we don't have the height syntax, so just have the number 9
+  " straight after.
+  elseif has("unix")
+    set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline\ 9
+  endif
+  " Remove gvim's chrome, I don't want a freaking menu
   set guioptions-=e
   set guioptions-=m
   set guioptions-=T
@@ -177,20 +184,26 @@ if has("gui_running")
   " Show the internal vim tabs only if there's >1 tab open
   set stal=1
   " Full screen means FULL screen
-  set fuoptions=maxvert,maxhorz
+  if has("mac")
+    set fuoptions=maxvert,maxhorz
+  endif
   " Turn off the visual bell
   set vb t_vb=
 endif
 
-
 " Hide the banner
 let g:netrw_banner=0
-
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" Resize buffer by +/- 10
+" Automagically hide trailing whitespace.
+set listchars=tab:▒\ ,trail:⎵
+set list
+"highlight ExtraWhitespace ctermbg=red guibg=red
+match TooLong '\s\+$'
+
+" Resize buffer by +/- 10%
 nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
