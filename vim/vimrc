@@ -29,6 +29,29 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 0
 
+runtime macros/matchit.vim
+
+" Add a gutter with git changes in it.
+NeoBundle 'airblade/vim-gitgutter'
+
+" Improve netrw
+NeoBundle 'tpope/vim-vinegar'
+
+" Make merges nice in vim
+NeoBundle 'sjl/splice.vim'
+
+" Adds 'end' to 'def', 'if', 'do'
+NeoBundle 'tpope/vim-endwise'
+
+" Makes columnising easy
+NeoBundle "godlygeek/tabular"
+
+" Surround stuff with stuff
+NeoBundle 'tpope/vim-surround'
+
+" Make your own textobjects
+NeoBundle 'kana/vim-textobj-user'
+
 " Syntax Highlighting for ActiveRecord,
 " Rake Interface, Rails CLI Interface,
 " Concern extraction (:Rextract {file}),
@@ -43,6 +66,10 @@ NeoBundle 'tpope/vim-rake'
 " Various ruby-specific changes
 NeoBundle 'vim-ruby/vim-ruby'
 
+" Use vir/var to select in/around ruby
+" blocks
+NeoBundle 'nelstrom/vim-textobj-rubyblock'
+
 " :NeoBundle interface, supports 'gf' inside
 " Gemfile.lock, and handy syntax highlighting
 " for uninstalled gems.
@@ -50,21 +77,6 @@ NeoBundle 'tpope/vim-bundler'
 
 " Add autocompletion for golang
 NeoBundle 'Blackrush/vim-gocode'
-
-" Add a gutter with git changes in it.
-NeoBundle 'airblade/vim-gitgutter'
-
-" Make merges nice in vim
-NeoBundle 'sjl/splice.vim'
-
-" Adds 'end' to 'def', 'if', 'do'
-NeoBundle 'tpope/vim-endwise'
-
-" Makes columnising easy
-NeoBundle "godlygeek/tabular"
-
-" Surround stuff with stuff
-NeoBundle 'tpope/vim-surround'
 
 " Fuzzy finder supporting file,
 " buffer, MRU, history, and a
@@ -80,6 +92,8 @@ NeoBundle 'johnhamelink/custom-xptemplate-snippets'
 " Syntax highlighting for scss files.
 NeoBundle 'cakebaker/scss-syntax.vim'
 
+" Shortcuts for building markdown files
+NeoBundle 'plasticboy/vim-markdown'
 
 " Gist integration
 NeoBundle 'mattn/webapi-vim'
@@ -130,7 +144,6 @@ set nowrap
 
 " Show line numbers
 set number
-
 
 " Automatically cd into the dir
 " of the file in the buffer.

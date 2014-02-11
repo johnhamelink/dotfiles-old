@@ -7,6 +7,14 @@ git-export() {
   rm -rf "$2/.git"
 }
 
+git-unmerged-into() {
+  git branch --no-merged $@
+}
+
+git-merged-into() {
+  git branch --merged $@
+}
+
 uploadImage (){
     echo "Uploading... " $1
     curl -s -F "image=@$1" -F "key=486690f872c678126a2c09a9e196ce1b" http://imgur.com/api/upload.xml | grep -E -o "<original_image>(.)*</original_image>" | grep -E -o "http://i.imgur.com/[^<]*"
