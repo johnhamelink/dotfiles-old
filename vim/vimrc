@@ -52,6 +52,8 @@ NeoBundle 'tpope/vim-surround'
 " Make your own textobjects
 NeoBundle 'kana/vim-textobj-user'
 
+NeoBundle 'terryma/vim-multiple-cursors'
+
 " Syntax Highlighting for ActiveRecord,
 " Rake Interface, Rails CLI Interface,
 " Concern extraction (:Rextract {file}),
@@ -91,6 +93,8 @@ NeoBundle 'johnhamelink/custom-xptemplate-snippets'
 
 " Syntax highlighting for scss files.
 NeoBundle 'cakebaker/scss-syntax.vim'
+
+NeoBundle 'Rykka/colorv.vim'
 
 " Shortcuts for building markdown files
 NeoBundle 'plasticboy/vim-markdown'

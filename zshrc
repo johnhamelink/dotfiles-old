@@ -28,7 +28,8 @@ ctags_ruby (){
 }
 
 
-alias server="ruby -run -e httpd . -p 3000"
+alias server="ruby -run -e httpd . -p 3210"
+alias stats="inxi -F -M -c 31"
 
 antigen use oh-my-zsh
 
