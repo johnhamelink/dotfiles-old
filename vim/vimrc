@@ -18,10 +18,6 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 
-" Show a pretty startup page with bookmarks,
-" recently used files and sessions.
-NeoBundle 'mhinz/vim-startify'
-
 " Lean & mean status/tabline for vim that's
 " Light as air
 NeoBundle 'bling/vim-airline'
@@ -72,6 +68,9 @@ NeoBundle 'vim-ruby/vim-ruby'
 " blocks
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
 
+" Various scala-specific changes
+NeoBundle 'derekwyatt/vim-scala'
+
 " :NeoBundle interface, supports 'gf' inside
 " Gemfile.lock, and handy syntax highlighting
 " for uninstalled gems.
@@ -112,9 +111,8 @@ let g:gist_open_browser_after_post = 1
 " Private gists by default
 let g:gist_private = 1
 
-NeoBundle 'chriskempson/base16-vim'
-set background=dark
-colorscheme base16-ocean
+" Disable welcome screen and use short messages
+set shortmess=atTiOI
 
 " Define what number of spaces a tab in a file counts for
 set tabstop=2
@@ -181,7 +179,12 @@ set magic
 let mapleader="\\"
 let g:mapleader="\\"
 
+NeoBundle 'chriskempson/base16-vim'
+
 if has("gui_running")
+  set background=dark
+  colorscheme base16-ocean
+
   " On OSX, set the font to Meslo regular (for powerline) with height = 11
   if has("mac")
     set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
@@ -208,7 +211,7 @@ if has("gui_running")
   set vb t_vb=
 endif
 
-" Hide the banner
+" Hide the banner in netrw
 let g:netrw_banner=0
 
 " Resize splits when the window is resized
@@ -218,7 +221,7 @@ au VimResized * :wincmd =
 set listchars=tab:▒\ ,trail:⎵
 set list
 "highlight ExtraWhitespace ctermbg=red guibg=red
-match TooLong '\s\+$'
+"match TooLong '\s\+$'
 
 " Resize buffer by +/- 10%
 nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
