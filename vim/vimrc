@@ -1,3 +1,6 @@
+" vim:fdm=marker
+
+" neobundle {{{
 if has('vim_starting')
   set nocompatible
   set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -17,6 +20,8 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+" }}}
+" vim-airline {{{
 
 " Lean & mean status/tabline for vim that's
 " Light as air
@@ -25,19 +30,9 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 0
 
+" }}}
+" TextObjects {{{
 runtime macros/matchit.vim
-
-" Add a gutter with git changes in it.
-NeoBundle 'airblade/vim-gitgutter'
-
-" Improve netrw
-NeoBundle 'tpope/vim-vinegar'
-
-" Make merges nice in vim
-NeoBundle 'sjl/splice.vim'
-
-" Adds 'end' to 'def', 'if', 'do'
-NeoBundle 'tpope/vim-endwise'
 
 " Makes columnising easy
 NeoBundle "godlygeek/tabular"
@@ -49,6 +44,15 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-textobj-user'
 
 NeoBundle 'terryma/vim-multiple-cursors'
+" }}}
+" XPTemplate {{{
+" Code snippets engine
+NeoBundle 'drmingdrmer/xptemplate'
+
+" Custom xptemplate snippets
+NeoBundle 'johnhamelink/custom-xptemplate-snippets'
+" }}}
+" Ruby & Rails {{{
 
 " Syntax Highlighting for ActiveRecord,
 " Rake Interface, Rails CLI Interface,
@@ -68,35 +72,48 @@ NeoBundle 'vim-ruby/vim-ruby'
 " blocks
 NeoBundle 'nelstrom/vim-textobj-rubyblock'
 
-" Various scala-specific changes
-NeoBundle 'derekwyatt/vim-scala'
-
-" :NeoBundle interface, supports 'gf' inside
+" Bundler interface, supports 'gf' inside
 " Gemfile.lock, and handy syntax highlighting
 " for uninstalled gems.
 NeoBundle 'tpope/vim-bundler'
 
+" Adds 'end' to 'def', 'if', 'do'
+NeoBundle 'tpope/vim-endwise'
+
+" }}}
+" Scala {{{
+
+" Various scala-specific changes
+NeoBundle 'derekwyatt/vim-scala'
+
+" }}}
+" Golang {{{
+
 " Add autocompletion for golang
 NeoBundle 'Blackrush/vim-gocode'
 
-" Fuzzy finder supporting file,
-" buffer, MRU, history, and a
-" mixture.
-NeoBundle 'kien/ctrlp.vim'
-
-" Code snippets engine
-NeoBundle 'drmingdrmer/xptemplate'
-
-" Custom xptemplate snippets
-NeoBundle 'johnhamelink/custom-xptemplate-snippets'
+" }}}
+" Stylesheets {{{
 
 " Syntax highlighting for scss files.
 NeoBundle 'cakebaker/scss-syntax.vim'
 
 NeoBundle 'Rykka/colorv.vim'
 
+" }}}
+" Markdown {{{
+
 " Shortcuts for building markdown files
 NeoBundle 'plasticboy/vim-markdown'
+
+" }}}
+" Git {{{
+
+" Make merges nice in vim
+NeoBundle 'sjl/splice.vim'
+
+" Add a gutter with git changes in it.
+NeoBundle 'airblade/vim-gitgutter'
 
 " Gist integration
 NeoBundle 'mattn/webapi-vim'
@@ -111,45 +128,47 @@ let g:gist_open_browser_after_post = 1
 " Private gists by default
 let g:gist_private = 1
 
+" }}}
+" Welcome Screen {{{
 " Disable welcome screen and use short messages
 set shortmess=atTiOI
+" }}}
+" Tabs {{{
 
 " Define what number of spaces a tab in a file counts for
-set tabstop=2
+" set tabstop=2
 
 " The shiftwidth command controls how many columns text is indented
 " with the reindent operations (<< and >>).
-set shiftwidth=2
+" set shiftwidth=2
 
 " Set the number of spaces that a <Tab> counts for while
 " performing editing operations, like inserting <Tab> or using
 " <BS>.
-set softtabstop=2
+" set softtabstop=2
 
 " When in insert-mode, use the appropriate number of spaces
 " to insert a <tab>
-set expandtab
+" set expandtab
 
 " Copy indent from the line above when pressing enter
-set autoindent
+" set autoindent
 
 " When starting a new line, vim should figure out the correct
 " indent to start on. Apparently.
-set smartindent
+" set smartindent
 
-" Override the defaults with a .editorconfig file if
-" one exists.
-NeoBundle 'editorconfig/editorconfig-vim'
+" Indentation rules for languages according to their most used style
+" guidelines. When in Rome.
+NeoBundle "sdanielf/vim-stdtabs"
 
-" No word-wrap
-set nowrap
+" }}}
+" Search {{{
 
-" Show line numbers
-set number
-
-" Automatically cd into the dir
-" of the file in the buffer.
-set autochdir
+" Fuzzy finder supporting file,
+" buffer, MRU, history, and a
+" mixture.
+NeoBundle 'kien/ctrlp.vim'
 
 " Highlight search results
 set hlsearch
@@ -161,17 +180,20 @@ set incsearch
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set wildmode=longest:full,list:full
 
+" For regular expressions turn magic on
+set magic
+
+" }}}
+" Bell {{{
+
 " Don't beep at me!
 set visualbell
 set noerrorbells
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
+" }}}
+" Leader {{{
 
 " Set the mapleader to \ - this
 " lets us use ctrlp's advanced
@@ -179,8 +201,9 @@ set magic
 let mapleader="\\"
 let g:mapleader="\\"
 
+" }}}
+" GUI {{{
 NeoBundle 'chriskempson/base16-vim'
-
 if has("gui_running")
   set background=dark
   colorscheme base16-ocean
@@ -211,23 +234,53 @@ if has("gui_running")
   set vb t_vb=
 endif
 
+" }}}
+" NetRW {{{
+
+" Automatically cd into the dir
+" of the file in the buffer.
+set autochdir
+
+" Improve netrw
+NeoBundle 'tpope/vim-vinegar'
+
 " Hide the banner in netrw
 let g:netrw_banner=0
+" }}}
+" EditorConfig {{{
+" Override the defaults with a .editorconfig file if
+" one exists.
+NeoBundle 'editorconfig/editorconfig-vim'
+" }}}
+" Formatting {{{
+" No word-wrap
+set nowrap
 
-" Resize splits when the window is resized
-au VimResized * :wincmd =
+" Show line numbers
+set number
+
 
 " Automagically hide trailing whitespace.
 set listchars=tab:▒\ ,trail:⎵
 set list
-"highlight ExtraWhitespace ctermbg=red guibg=red
-"match TooLong '\s\+$'
+
+" }}}
+" Buffer {{{
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
 
 " Resize buffer by +/- 10%
 nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
+" }}}
+" neobundle {{{
 filetype plugin indent on
 
 " Installation Check.
 NeoBundleCheck
+" }}}

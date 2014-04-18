@@ -1,9 +1,12 @@
 [options]
 scrollback_lines = 10000
-font = pragmatapro regular 9
-clickable_url = true
-visible_bell = false
-audible_bell = false
+font             = pragmatapro regular 9
+clickable_url    = true
+allow_bold       = true
+visible_bell     = false
+audible_bell     = false
+
+cursor_blink = off
 
 [colors]
 
