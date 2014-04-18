@@ -1,6 +1,7 @@
 " vim:fdm=marker
 
 " neobundle {{{
+
 if has('vim_starting')
   set nocompatible
   set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -20,6 +21,7 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+
 " }}}
 " vim-airline {{{
 
@@ -32,6 +34,7 @@ let g:airline#extensions#tabline#enabled = 0
 
 " }}}
 " TextObjects {{{
+
 runtime macros/matchit.vim
 
 " Makes columnising easy
@@ -44,13 +47,16 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-textobj-user'
 
 NeoBundle 'terryma/vim-multiple-cursors'
+
 " }}}
 " XPTemplate {{{
+
 " Code snippets engine
 NeoBundle 'drmingdrmer/xptemplate'
 
 " Custom xptemplate snippets
 NeoBundle 'johnhamelink/custom-xptemplate-snippets'
+
 " }}}
 " Ruby & Rails {{{
 
@@ -136,8 +142,10 @@ let g:gist_private = 1
 
 " }}}
 " Welcome Screen {{{
+
 " Disable welcome screen and use short messages
 set shortmess=atTiOI
+
 " }}}
 " Tabs {{{
 
@@ -209,6 +217,7 @@ let g:mapleader="\\"
 
 " }}}
 " GUI {{{
+
 NeoBundle 'chriskempson/base16-vim'
 if has("gui_running")
   set background=dark
@@ -252,13 +261,17 @@ NeoBundle 'tpope/vim-vinegar'
 
 " Hide the banner in netrw
 let g:netrw_banner=0
+
 " }}}
 " EditorConfig {{{
+
 " Override the defaults with a .editorconfig file if
 " one exists.
 NeoBundle 'editorconfig/editorconfig-vim'
+
 " }}}
 " Formatting {{{
+
 " No word-wrap
 set nowrap
 
@@ -285,8 +298,10 @@ nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " }}}
 " neobundle {{{
+
 filetype plugin indent on
 
 " Installation Check.
 NeoBundleCheck
+
 " }}}
