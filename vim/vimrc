@@ -93,6 +93,12 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'Blackrush/vim-gocode'
 
 " }}}
+" Brolink {{{
+NeoBundle 'jaxbot/brolink.vim'
+" Setup File Handlers
+au BufWritePost *.html,*.js,*.php,*.erb,*.haml :BLReloadPage
+au BufWritePost *.css,*.scss,*.sass,*.less :BLReloadCSS
+" }}}
 " Stylesheets {{{
 
 " Syntax highlighting for scss files.
@@ -136,27 +142,27 @@ set shortmess=atTiOI
 " Tabs {{{
 
 " Define what number of spaces a tab in a file counts for
-" set tabstop=2
+  set tabstop=2
 
 " The shiftwidth command controls how many columns text is indented
 " with the reindent operations (<< and >>).
-" set shiftwidth=2
+  set shiftwidth=2
 
 " Set the number of spaces that a <Tab> counts for while
 " performing editing operations, like inserting <Tab> or using
 " <BS>.
-" set softtabstop=2
+  set softtabstop=2
 
 " When in insert-mode, use the appropriate number of spaces
 " to insert a <tab>
-" set expandtab
+  set expandtab
 
 " Copy indent from the line above when pressing enter
-" set autoindent
+  set autoindent
 
 " When starting a new line, vim should figure out the correct
 " indent to start on. Apparently.
-" set smartindent
+  set smartindent
 
 " Indentation rules for languages according to their most used style
 " guidelines. When in Rome.

@@ -3,6 +3,7 @@ local gears  = require("gears")
 local awful  = require("awful")
 local rsync  = require("rsync")
 local sonos  = require("sonos")
+local gpu    = require("gpu")
 local pacman = require("pacman")
 awful.rules  = require("awful.rules")
 require("awful.autofocus")
@@ -158,6 +159,10 @@ mymemwidget = wibox.widget.textbox()
 -- Register widget
 vicious.register(mymemwidget, vicious.widgets.mem, "<span color=\"#1B9BE0\">MEM:</span> <span color=\"#737373\">$1% ($2MB/$3MB)</span>", 13)
 
+-- Initialize widget
+mygpuwidget = wibox.widget.textbox()
+-- Register widget
+vicious.register(mygpuwidget, doGpu, "$1", 13)
 
 
 -- Create a wibox for each screen and add it
@@ -244,6 +249,8 @@ for s = 1, screen.count() do
     right_layout:add(mycpuwidget)
     right_layout:add(separator)
     right_layout:add(mymemwidget)
+    right_layout:add(separator)
+    right_layout:add(mygpuwidget)
     right_layout:add(separator)
     right_layout:add(mympdwidget)
     right_layout:add(separator)
