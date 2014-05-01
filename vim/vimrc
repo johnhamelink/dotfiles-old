@@ -86,6 +86,9 @@ NeoBundle 'tpope/vim-bundler'
 " Adds 'end' to 'def', 'if', 'do'
 NeoBundle 'tpope/vim-endwise'
 
+" Refactoring macros for extra added sunshine to your day
+NeoBundle 'ecomba/vim-ruby-refactoring'
+
 " }}}
 " Scala {{{
 
