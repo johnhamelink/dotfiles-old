@@ -222,6 +222,7 @@ let g:mapleader="\\"
 " GUI {{{
 
 NeoBundle 'chriskempson/base16-vim'
+syntax on
 if has("gui_running")
   set background=dark
   colorscheme base16-ocean
