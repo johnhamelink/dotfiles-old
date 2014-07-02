@@ -139,7 +139,7 @@ let g:gist_private = 1
 " Disable welcome screen and use short messages
 set shortmess=atTiOI
 " }}}
-" Tabs {{{
+" Indenting {{{
 
 " Define what number of spaces a tab in a file counts for
   set tabstop=2
@@ -168,6 +168,19 @@ set shortmess=atTiOI
 " guidelines. When in Rome.
 NeoBundle "sdanielf/vim-stdtabs"
 
+" Nice indent guides
+NeoBundle "nathanaelkane/vim-indent-guides"
+let g:indent_guides_enable_on_vim_startup = 1
+
+" }}}
+" Unite {{{
+  NeoBundle "Shougo/unite.vim"
+  " Yanking 
+  nnoremap <leader>y :Unite history/yank<cr>
+  " Ctrlp replacement
+  "nnoremap <C-p> :Unite file_rec/async:!<cr>
+  " Buffer switching
+  nnoremap <leader>s :Unite -quick-match buffer<cr>
 " }}}
 " Search {{{
 
@@ -175,6 +188,10 @@ NeoBundle "sdanielf/vim-stdtabs"
 " buffer, MRU, history, and a
 " mixture.
 NeoBundle 'kien/ctrlp.vim'
+
+" Allow the use of searching with
+" Ag (aka the silver searcher)
+NeoBundle 'rking/ag.vim'
 
 " Highlight search results
 set hlsearch
@@ -209,10 +226,13 @@ let g:mapleader="\\"
 
 " }}}
 " GUI {{{
-NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'nanotech/jellybeans.vim'
+colorscheme jellybeans
 if has("gui_running")
   set background=dark
-  colorscheme base16-ocean
+  "NeoBundle 'chriskempson/base16-vim'
+  "colorscheme base16-ocean
+
 
   " On OSX, set the font to Meslo regular (for powerline) with height = 11
   if has("mac")
