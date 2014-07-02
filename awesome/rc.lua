@@ -2,6 +2,7 @@
 local gears  = require("gears")
 local awful  = require("awful")
 local rsync  = require("rsync")
+local isp    = require("andrews_and_arnold")
 local sonos  = require("sonos")
 local gpu    = require("gpu")
 local pacman = require("pacman")
@@ -118,14 +119,17 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 -- Create a textclock widget
 
+isp = wibox.widget.textbox()
+vicious.register(isp, getQuota, "$1", 120)
+
 sonos = wibox.widget.textbox()
-vicious.register(sonos, doSonosNowPlaying, "$1", 15)
+vicious.register(sonos, doSonosNowPlaying, "$1 ", 120)
 
 rsync = wibox.widget.textbox()
-vicious.register(rsync, doSync, "$1", 5)
+vicious.register(rsync, doSync, "$1 ", 120)
 
 pacman = wibox.widget.textbox()
-vicious.register(pacman, doPacman, "$1", 120)
+vicious.register(pacman, doPacman, "$1 ", 120)
 
 
 separator = wibox.widget.textbox(" <span color=\"#4F4F4F\">|</span> ")
@@ -241,18 +245,22 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
-    if s ~= 1 then right_layout:add(sonos) end
-    if s ~= 1 then right_layout:add(rsync) end
-    if s ~= 1 then right_layout:add(pacman) end
-    right_layout:add(separator)
-    right_layout:add(mycpuwidget)
-    right_layout:add(separator)
-    right_layout:add(mymemwidget)
-    right_layout:add(separator)
-    right_layout:add(mygpuwidget)
-    right_layout:add(separator)
-    right_layout:add(mympdwidget)
+    if s == 1 then 
+      right_layout:add(wibox.widget.systray()) 
+    end
+    if s ~= 1 then 
+      right_layout:add(isp)
+      right_layout:add(sonos)
+      right_layout:add(rsync)
+      right_layout:add(pacman)
+      right_layout:add(mycpuwidget)
+      right_layout:add(separator)
+      right_layout:add(mymemwidget)
+      right_layout:add(separator)
+      right_layout:add(mygpuwidget)
+      right_layout:add(separator)
+      right_layout:add(mympdwidget)
+    end
     right_layout:add(separator)
     right_layout:add(mytextclock)
     right_layout:add(separator)

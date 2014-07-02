@@ -36,7 +36,7 @@ function runSonosNowPlaying()
 
     local line, err = c:receive()
     c:close()
-    return line
+    return "<span color=\"#1B9BE0\">Sonos:</span> <span color=\"#737373\">" .. line .. "</span> <span color=\"#4F4F4F\">|</span> "
 end
 
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
