@@ -120,7 +120,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 
 isp = wibox.widget.textbox()
-vicious.register(isp, getQuota, "$1", 120)
+vicious.register(isp, getQuota, "$1", (60 * 60))
 
 sonos = wibox.widget.textbox()
 vicious.register(sonos, doSonosNowPlaying, "$1 ", 120)
