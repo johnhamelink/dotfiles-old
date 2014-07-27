@@ -27,6 +27,8 @@
 
 " Paired programming for vim!
   NeoBundle 'FredKSchott/CoVim/'
+  let CoVim_default_name = "covim"
+  let CoVim_default_port = "2065"
 
 " }}}
 " vim-airline {{{
