@@ -23,12 +23,6 @@
         \ }
 
 " }}}
-" vim-multiuser {{{
-
-" Paired programming for vim!
-  NeoBundle 'emgram769/vim-multiuser'
-
-" }}}
 " vim-airline {{{
 
 " Lean & mean status/tabline for vim that's
