@@ -1,61 +1,69 @@
 " vim:fdm=marker
 
-" neobundle {{{
+" Neobundle {{{
 
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+  if has('vim_starting')
+    set nocompatible
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+  endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#rc(expand('~/.vim/bundle/'))
 
 " Let Vundle handle itsself!
-NeoBundleFetch 'Shougo/neobundle.vim'
+  NeoBundleFetch 'Shougo/neobundle.vim'
 
 
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+  NeoBundle 'Shougo/vimproc', {
+        \ 'build' : {
+        \     'windows' : 'make -f make_mingw32.mak',
+        \     'cygwin' : 'make -f make_cygwin.mak',
+        \     'mac' : 'make -f make_mac.mak',
+        \     'unix' : 'make -f make_unix.mak',
+        \    },
+        \ }
+
+" }}}
+" CoVim {{{
+
+" Paired programming for vim!
+  NeoBundle 'FredKSchott/CoVim/'
 
 " }}}
 " vim-airline {{{
 
 " Lean & mean status/tabline for vim that's
 " Light as air
-NeoBundle 'bling/vim-airline'
-set laststatus=2
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 0
+  NeoBundle 'bling/vim-airline'
+  set laststatus=2
+  let g:airline_powerline_fonts=1
+  let g:airline#extensions#tabline#enabled = 0
 
 " }}}
 " TextObjects {{{
 
-runtime macros/matchit.vim
+  runtime macros/matchit.vim
 
 " Makes columnising easy
-NeoBundle "godlygeek/tabular"
+  NeoBundle "godlygeek/tabular"
 
 " Surround stuff with stuff
-NeoBundle 'tpope/vim-surround'
+  NeoBundle 'tpope/vim-surround'
 
 " Make your own textobjects
-NeoBundle 'kana/vim-textobj-user'
+  NeoBundle 'kana/vim-textobj-user'
 
-NeoBundle 'terryma/vim-multiple-cursors'
+" Emulate the multiple cursors functionality
+" available in Sublime Text
+  NeoBundle 'terryma/vim-multiple-cursors'
 
 " }}}
 " XPTemplate {{{
 
 " Code snippets engine
-NeoBundle 'drmingdrmer/xptemplate'
+  NeoBundle 'drmingdrmer/xptemplate'
 
 " Custom xptemplate snippets
-NeoBundle 'johnhamelink/custom-xptemplate-snippets'
+  NeoBundle 'johnhamelink/custom-xptemplate-snippets'
 
 " }}}
 " Ruby & Rails {{{
@@ -65,89 +73,89 @@ NeoBundle 'johnhamelink/custom-xptemplate-snippets'
 " Concern extraction (:Rextract {file}),
 " Allows 'gf' to know about partials, fixtures,
 " and more.
-NeoBundle 'tpope/vim-rails'
+  NeoBundle 'tpope/vim-rails'
 " Vim-rake lets us use some of the
 " rails functionality on non-rails
 " ruby projects.
-NeoBundle 'tpope/vim-rake'
+  NeoBundle 'tpope/vim-rake'
 
 " Various ruby-specific changes
-NeoBundle 'vim-ruby/vim-ruby'
+  NeoBundle 'vim-ruby/vim-ruby'
 
 " Use vir/var to select in/around ruby
 " blocks
-NeoBundle 'nelstrom/vim-textobj-rubyblock'
+  NeoBundle 'nelstrom/vim-textobj-rubyblock'
 
 " Bundler interface, supports 'gf' inside
 " Gemfile.lock, and handy syntax highlighting
 " for uninstalled gems.
-NeoBundle 'tpope/vim-bundler'
+  NeoBundle 'tpope/vim-bundler'
 
-" Adds 'end' to 'def', 'if', 'do'
-NeoBundle 'tpope/vim-endwise'
+" Adds 'end' to 'def', 'if' & 'do'
+  NeoBundle 'tpope/vim-endwise'
 
 " Refactoring macros for extra added sunshine to your day
-NeoBundle 'ecomba/vim-ruby-refactoring'
+  NeoBundle 'ecomba/vim-ruby-refactoring'
 
 " }}}
 " Scala {{{
 
 " Various scala-specific changes
-NeoBundle 'derekwyatt/vim-scala'
+  NeoBundle 'derekwyatt/vim-scala'
 
 " }}}
 " Golang {{{
 
 " Add autocompletion for golang
-NeoBundle 'Blackrush/vim-gocode'
+  NeoBundle 'Blackrush/vim-gocode'
 
 " }}}
 " Brolink {{{
-NeoBundle 'jaxbot/brolink.vim'
+  NeoBundle 'jaxbot/brolink.vim'
 " Setup File Handlers
-au BufWritePost *.html,*.js,*.php,*.erb,*.haml :BLReloadPage
-au BufWritePost *.css,*.scss,*.sass,*.less :BLReloadCSS
+  au BufWritePost *.html,*.js,*.php,*.erb,*.haml :BLReloadPage
+  au BufWritePost *.css,*.scss,*.sass,*.less :BLReloadCSS
 " }}}
 " Stylesheets {{{
 
 " Syntax highlighting for scss files.
-NeoBundle 'cakebaker/scss-syntax.vim'
+  NeoBundle 'cakebaker/scss-syntax.vim'
 
-NeoBundle 'Rykka/colorv.vim'
+  NeoBundle 'Rykka/colorv.vim'
 
 " }}}
 " Markdown {{{
 
 " Shortcuts for building markdown files
-NeoBundle 'plasticboy/vim-markdown'
+  NeoBundle 'plasticboy/vim-markdown'
 
 " }}}
 " Git {{{
 
 " Make merges nice in vim
-NeoBundle 'sjl/splice.vim'
+  NeoBundle 'sjl/splice.vim'
 
 " Add a gutter with git changes in it.
-NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'airblade/vim-gitgutter'
 
 " Gist integration
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/gist-vim'
+  NeoBundle 'mattn/webapi-vim'
+  NeoBundle 'mattn/gist-vim'
 " When sending code, copy resultant URL to the clipboard
-if has("mac")
-  let g:gist_clip_command = 'pbcopy'
-elseif has("unix")
-  let g:gist_clip_command = 'xclip -selection clipboard'
-endif
-let g:gist_open_browser_after_post = 1
+  if has("mac")
+    let g:gist_clip_command = 'pbcopy'
+  elseif has("unix")
+    let g:gist_clip_command = 'xclip -selection clipboard'
+  endif
+  let g:gist_open_browser_after_post = 1
 " Private gists by default
-let g:gist_private = 1
+  let g:gist_private = 1
 
 " }}}
 " Welcome Screen {{{
 
 " Disable welcome screen and use short messages
-set shortmess=atTiOI
+  set shortmess=atTiOI
 
 " }}}
 " Indenting {{{
@@ -177,11 +185,11 @@ set shortmess=atTiOI
 
 " Indentation rules for languages according to their most used style
 " guidelines. When in Rome.
-NeoBundle "sdanielf/vim-stdtabs"
+  NeoBundle "sdanielf/vim-stdtabs"
 
 " Nice indent guides
-NeoBundle "nathanaelkane/vim-indent-guides"
-let g:indent_guides_enable_on_vim_startup = 1
+  NeoBundle "nathanaelkane/vim-indent-guides"
+  let g:indent_guides_enable_on_vim_startup = 1
 
 " }}}
 " Unite {{{
@@ -198,24 +206,27 @@ let g:indent_guides_enable_on_vim_startup = 1
 " Fuzzy finder supporting file,
 " buffer, MRU, history, and a
 " mixture.
-NeoBundle 'kien/ctrlp.vim'
+  NeoBundle 'kien/ctrlp.vim'
 
 " Allow the use of searching with
 " Ag (aka the silver searcher)
-NeoBundle 'rking/ag.vim'
+  NeoBundle 'rking/ag.vim'
 
 " Highlight search results
-set hlsearch
+  set nohlsearch
 
 " Show search matches as we type
-set incsearch
+  set incsearch
+
+" Ignore regular extensions
+  set ignorecase
 
 " Ignore all of the below filetypes
-set wildignore=*.swp,*.bak,*.pyc,*.class
-set wildmode=longest:full,list:full
+  set wildignore=*.swp,*.bak,*.pyc,*.class
+  set wildmode=longest:full,list:full
 
 " For regular expressions turn magic on
-set magic
+  set magic
 
 " }}}
 " Bell {{{
@@ -232,101 +243,101 @@ autocmd GUIEnter * set visualbell t_vb=
 " Set the mapleader to \ - this
 " lets us use ctrlp's advanced
 " stuff.
-let mapleader="\\"
-let g:mapleader="\\"
+  let mapleader="\\"
+  let g:mapleader="\\"
 
 " }}}
 " GUI {{{
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'nanotech/jellybeans.vim'
-syntax on
-colorscheme jellybeans
-if has("gui_running")
-  set background=dark
+  NeoBundle 'chriskempson/base16-vim'
+  NeoBundle 'nanotech/jellybeans.vim'
+  syntax on
+  colorscheme jellybeans
+  if has("gui_running")
+    set background=dark
 
-  " On OSX, set the font to Meslo regular (for powerline) with height = 11
-  if has("mac")
-    set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
-    colorscheme jellybeans
-  " On Linux we don't have the height syntax, so just have the number 9
-  " straight after.
-  elseif has("unix")
-    set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline\ 9
-    colorscheme base16-ocean
+" On OSX, set the font to Meslo regular (for powerline) with height = 11
+    if has("mac")
+      set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
+      colorscheme jellybeans
+" On Linux we don't have the height syntax, so just have the number 9
+" straight after.
+    elseif has("unix")
+      set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline\ 9
+      colorscheme base16-ocean
+    endif
+" Remove gvim's chrome, I don't want a freaking menu
+    set guioptions-=e
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=t
+    set guioptions-=r
+    set guioptions-=L
+    set guicursor+=a:blinkon0
+" Show the internal vim tabs only if there's >1 tab open
+    set stal=1
+" Full screen means FULL screen
+    if has("mac")
+      set fuoptions=maxvert,maxhorz
+    endif
+" Turn off the visual bell
+    set vb t_vb=
+" Set an underline cursor
+    set guicursor=i:hor1-blinkon0
   endif
-  " Remove gvim's chrome, I don't want a freaking menu
-  set guioptions-=e
-  set guioptions-=m
-  set guioptions-=T
-  set guioptions-=t
-  set guioptions-=r
-  set guioptions-=L
-  set guicursor+=a:blinkon0
-  " Show the internal vim tabs only if there's >1 tab open
-  set stal=1
-  " Full screen means FULL screen
-  if has("mac")
-    set fuoptions=maxvert,maxhorz
-  endif
-  " Turn off the visual bell
-  set vb t_vb=
-  " Set an underline cursor
-  set guicursor=i:hor1-blinkon0
-endif
 
 " }}}
 " NetRW {{{
 
 " Automatically cd into the dir
 " of the file in the buffer.
-set autochdir
+  set autochdir
 
 " Improve netrw
-NeoBundle 'tpope/vim-vinegar'
+  NeoBundle 'tpope/vim-vinegar'
 
 " Hide the banner in netrw
-let g:netrw_banner=0
+  let g:netrw_banner=0
 
 " }}}
 " EditorConfig {{{
 
 " Override the defaults with a .editorconfig file if
 " one exists.
-NeoBundle 'editorconfig/editorconfig-vim'
+  NeoBundle 'editorconfig/editorconfig-vim'
 
 " }}}
 " Formatting {{{
 
 " No word-wrap
-set nowrap
+  set nowrap
 
 " Show line numbers
-set number
+  set number
 
 
 " Automagically hide trailing whitespace.
-set listchars=tab:▒\ ,trail:⎵
-set list
+  set listchars=tab:▒\ ,trail:⎵
+  set list
 
 " }}}
 " Buffer {{{
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw
+  set lazyredraw
 
 " Resize splits when the window is resized
-au VimResized * :wincmd =
+  au VimResized * :wincmd =
 
 " Resize buffer by +/- 10%
-nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
+  nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+  nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " }}}
-" neobundle {{{
+" Neobundle {{{
 
-filetype plugin indent on
+  filetype plugin indent on
 
 " Installation Check.
-NeoBundleCheck
+  NeoBundleCheck
 
 " }}}
