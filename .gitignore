@@ -5,3 +5,4 @@ weechat/logs/*
 emacs/.cask
 emacs/auto-save-list/
 emacs/var/
+weechat/irc.conf
