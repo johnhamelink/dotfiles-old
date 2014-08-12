@@ -1,1 +1,1 @@
-weechat/irc.conf filter=remote-password
+*.conf filter=remote-password
