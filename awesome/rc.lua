@@ -43,13 +43,18 @@ do
 end
 -- }}}
 
+--- {{{ Compositor
+--- Spawn compton from within awesome
+awful.util.spawn_with_shell("killall unagi; sleep 5; unagi &")
+-- }}}
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 --beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.init("/home/john/.config/awesome/zenburn/awesome-configs/zenburn.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "termite"
+terminal = "terminology"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -432,6 +437,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { class = "terminology" },
+      properties = { opacity = 0.8   } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },

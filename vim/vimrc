@@ -104,6 +104,11 @@
   NeoBundle 'Blackrush/vim-gocode'
 
 " }}}
+" CoffeeScript {{{
+
+  NeoBundle 'kchmck/vim-coffee-script'
+
+" }}}
 " Brolink {{{
   NeoBundle 'jaxbot/brolink.vim'
 " Setup File Handlers
@@ -188,7 +193,7 @@
 " }}}
 " Unite {{{
   NeoBundle "Shougo/unite.vim"
-  " Yanking 
+  " Yanking
   nnoremap <leader>y :Unite history/yank<cr>
   " Ctrlp replacement
   "nnoremap <C-p> :Unite file_rec/async:!<cr>

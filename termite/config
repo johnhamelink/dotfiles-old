@@ -1,10 +1,12 @@
 [options]
 scrollback_lines = 10000
-font             = pragmatapro regular 9
+font             = pragmatapro regular 10
+#font             = Input Mono Condensed 9
 clickable_url    = true
+browser          = chromium
 allow_bold       = true
 visible_bell     = false
-audible_bell     = false
+audible_bell     = true
 
 cursor_blink = off
 

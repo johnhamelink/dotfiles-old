@@ -27,6 +27,15 @@ ctags_ruby (){
   echo "Done"
 }
 
+dexcount (){
+  `cp $1 $1+copy >/dev/null`
+  `mkdir temp >/dev/null`
+  `cp $1 temp/$1+copy > /dev/null`
+  `unzip temp/$1+copy > /dev/null`
+  cat temp/classes.dex | head -c 92 | tail -c 4 | hexdump -e '1/4 "%d\n"'
+  rm -R temp > /dev/null
+}
+
 
 alias server="ruby -run -e httpd . -p 3210"
 alias stats="inxi -F -M -c 31"
