@@ -96,4 +96,4 @@ fi
 antigen apply
 
 # added by travis gem
-[ -f /home/john/.travis/travis.sh ] && source /home/john/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
