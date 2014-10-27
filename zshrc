@@ -59,6 +59,9 @@ antigen bundles <<EOBUNDLES
   rails
   rbenv
 
+  # Pairing
+  tmux
+
   # Make the terminal a nicer place to be: Linux Edition
   command-not-found
   cp
