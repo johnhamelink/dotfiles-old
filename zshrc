@@ -55,18 +55,15 @@ antigen bundles <<EOBUNDLES
 
   # Ruby/Rails stuff
   bundler
-  rvm
   gem
   rails
-  johnhamelink/rvm-zsh
+  rbenv
 
   # Make the terminal a nicer place to be: Linux Edition
   command-not-found
   cp
   docker
   zsh-users/zsh-completions src
-  johnhamelink/env-zsh
-
 
   # Make the terminal a nicer place to be: ZSH Edition
   # "If you want to use the zsh-syntax-highlighting script along with
@@ -80,11 +77,13 @@ antigen bundles <<EOBUNDLES
   git-extras
   bobthecow/git-flow-completion
 
+  # Prettiness
+  nojhan/liquidprompt
+
 EOBUNDLES
 
 
 # Make the prompt pretty :3
-antigen theme johnhamelink/norm-zsh norm
 
 # Source os-specific files.
 envfile="$HOME/.dotfiles/zsh/`uname`.sh"
