@@ -46,8 +46,12 @@ antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
 
-  # Java
+  # Vagrant
+  vagrant
+
+  # Java / Android
   gradle
+  adb
 
   # Ruby/Rails stuff
   bundler
