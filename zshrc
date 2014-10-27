@@ -36,7 +36,6 @@ dexcount (){
   rm -R temp > /dev/null
 }
 
-
 alias server="ruby -run -e httpd . -p 3210"
 alias stats="inxi -F -M -c 31"
 alias brolink="node ~/.vim/bundle/brolink.vim/brolink/brolink.js"
@@ -85,9 +84,6 @@ antigen bundles <<EOBUNDLES
 
 EOBUNDLES
 
-
-# Make the prompt pretty :3
-
 # Source os-specific files.
 envfile="$HOME/.dotfiles/zsh/`uname`.sh"
 if [ -r $envfile ]; then
@@ -101,6 +97,4 @@ fi
 
 antigen apply
 
-# added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 source "$HOME/.zprofile"
