@@ -23,6 +23,12 @@
         \ }
 
 " }}}
+" {{{ Annoyances
+
+noremap Q <Nop>
+noremap K <Nop>
+
+" }}}
 " vim-airline {{{
 
 " Lean & mean status/tabline for vim that's
@@ -91,6 +97,10 @@
 " Refactoring macros for extra added sunshine to your day
   NeoBundle 'ecomba/vim-ruby-refactoring'
 
+" Convert ruby do/end with {}
+  noremap <leader>do ma^/do<cr>ciw{<esc>lxJJ$ciw}<esc>`a
+
+
 " }}}
 " Scala {{{
 
@@ -122,6 +132,11 @@
 
   NeoBundle 'Rykka/colorv.vim'
 
+" }}}
+" Todos {{{
+  NeoBundle 'xolox/vim-misc'
+  NeoBundle 'xolox/vim-notes'
+  let g:notes_directories = ['~/Public/notes']
 " }}}
 " Markdown {{{
 
@@ -192,24 +207,50 @@
 
 " }}}
 " Unite {{{
+  " Allow Unite to handle mru
+  NeoBundle "Shougo/neomru.vim"
   NeoBundle "Shougo/unite.vim"
-  " Yanking
-  nnoremap <leader>y :Unite history/yank<cr>
-  " Ctrlp replacement
-  "nnoremap <C-p> :Unite file_rec/async:!<cr>
-  " Buffer switching
-  nnoremap <leader>s :Unite -quick-match buffer<cr>
+" Ctrlp replacement
+  nnoremap <C-p> :Unite -no-split -start-insert file_rec/async<cr>
+" In-file line search
+  nnoremap <leader>/ :Unite line<cr>
+
+" Call these custom settings on all unite buffers:
+  autocmd FileType unite call s:unite_settings()
+  function! s:unite_settings()
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+    imap <buffer> <c-a> <Plug>(unite_choose_action)
+
+    imap <silent><buffer><expr> <C-s> unite#do_action('split')
+    imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+    imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+    nmap <buffer> <ESC> <Plug>(unite_exit)
+  endfunction
+
+
 " }}}
 " Search {{{
 
-" Fuzzy finder supporting file,
-" buffer, MRU, history, and a
-" mixture.
-  NeoBundle 'kien/ctrlp.vim'
+" Tell unit to use ag for searching
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
 
-" Allow the use of searching with
-" Ag (aka the silver searcher)
-  NeoBundle 'rking/ag.vim'
+" Excluded directories for unite
+  call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+    \ 'ignore_pattern', join([
+    \ '\.git/',
+    \ '\.sass-cache/',
+    \ '\vendor/',
+    \ '\node_modules/',
+    \ '\.svn/',
+    \ '\.hg/',
+    \ ], '\|'))
+
 
 " Highlight search results
   set nohlsearch
@@ -226,6 +267,12 @@
 
 " For regular expressions turn magic on
   set magic
+
+" }}}
+" Yank {{{
+
+  let g:unite_source_history_yank_enable = 1
+  nnoremap <space>y :Unite history/yank<cr>
 
 " }}}
 " Bell {{{
@@ -247,8 +294,8 @@ autocmd GUIEnter * set visualbell t_vb=
 
 " }}}
 " GUI {{{
-  NeoBundle 'chriskempson/base16-vim'
   NeoBundle 'nanotech/jellybeans.vim'
+  NeoBundle 'whatyouhide/vim-gotham'
   syntax on
   colorscheme jellybeans
   if has("gui_running")
@@ -262,7 +309,8 @@ autocmd GUIEnter * set visualbell t_vb=
 " straight after.
     elseif has("unix")
       set guifont=Meslo\ LG\ S\ DZ\ for\ Powerline\ 9
-      colorscheme base16-ocean
+      "colorscheme base16-ocean
+      colorscheme gotham
     endif
 " Remove gvim's chrome, I don't want a freaking menu
     set guioptions-=e
@@ -297,6 +345,10 @@ autocmd GUIEnter * set visualbell t_vb=
 " Hide the banner in netrw
   let g:netrw_banner=0
 
+" Fix bug where buffer doesn't enter the
+" correct directory all the time.
+  autocmd BufEnter * silent! lcd %:p:h
+
 " }}}
 " EditorConfig {{{
 
@@ -330,6 +382,36 @@ autocmd GUIEnter * set visualbell t_vb=
 " Resize buffer by +/- 10%
   nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
   nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+" Let vim airline show the buffers in the top
+  let g:airline#extensions#tabline#enabled = 1
+" Only show the filename of the buffer
+  let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Allow buffers to be hidden if you've modified
+" a buffer. This is almost a must if you wish to
+" use buffers this way.
+  set hidden
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind
+" to this mapping
+  nmap <leader>t :enew<cr>
+
+" Move to the previous buffer
+  nmap <leader>j :bprevious<cr>
+
+" Move to the next buffer
+  nmap <leader>k :bnext<cr>
+
+" Close the current buffer and move to the
+" previous one - this replicates the idea of
+" closing a tab
+  nmap <leader>bq :bp <bar> bd #<cr>
+
+" Show current buffers with ctrlp
+  nmap <leader>bl :Unite -no-split -start-insert buffer tab file_mru directory_mru<cr>
+
 
 " }}}
 " Neobundle {{{
