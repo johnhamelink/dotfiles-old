@@ -1,5 +1,5 @@
 .netrwhist
-vim/bundle/*
+nvim/plugged/*
 tmp/
 weechat/logs/*
 weechat/sec.conf
