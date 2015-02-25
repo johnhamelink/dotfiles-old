@@ -2,6 +2,7 @@
 vim/bundle/*
 tmp/
 weechat/logs/*
+weechat/sec.conf
 emacs/.cask
 emacs/auto-save-list/
 emacs/var/

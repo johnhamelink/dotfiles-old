@@ -38,8 +38,8 @@ dexcount (){
 
 alias server="ruby -run -e httpd . -p 3210"
 alias stats="inxi -F -M -c 31"
-alias brolink="node ~/.vim/bundle/brolink.vim/brolink/brolink.js"
 alias lsmount="mount | column -t"
+alias vim="nvim"
 
 antigen use oh-my-zsh
 
@@ -58,8 +58,15 @@ antigen bundles <<EOBUNDLES
   rails
   rbenv
 
+  # EmberJS
+  ember-cli
+  https://gist.github.com/WMeldon/19e822d30a57f48c36cd
+
   # Pairing
   tmux
+
+  # Being organised
+  taskwarrior
 
   # Make the terminal a nicer place to be: Linux Edition
   command-not-found

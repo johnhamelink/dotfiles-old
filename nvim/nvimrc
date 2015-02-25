@@ -1,0 +1,223 @@
+" vim:fdm=marker
+
+" Skip initialization if we're running vim-tiny or vim-small
+if !1 | finish | endif
+
+" Plugins {{{
+call plug#begin('~/.nvim/plugged')
+
+" Statusbar {{{
+Plug 'bling/vim-airline'
+" }}}
+
+" Templates {{{
+Plug 'drmingdrmer/xptemplate'
+Plug 'johnhamelink/custom-xptemplate-snippets'
+" }}}
+
+" Rails {{{
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-endwise'
+Plug 'ecomba/vim-ruby-refactoring'
+" }}}
+
+" Elixir {{{
+Plug 'elixir-lang/vim-elixir'
+"}}}
+
+" CSS {{{
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'Rykka/colorv.vim'
+" }}}
+
+" Markdown {{{
+Plug 'plasticboy/vim-markdown'
+" }}}
+
+" Handlebars {{{
+Plug 'mustache/vim-mustache-handlebars'
+" }}}
+
+" Git {{{
+Plug 'airblade/vim-gitgutter'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+" }}}
+
+" Indentation {{{
+Plug 'sdanielf/vim-stdtabs'
+Plug 'nathanaelkane/vim-indent-guides'
+" }}}
+
+" Search {{{
+Plug 'Shougo/unite.vim'
+Plug 'rking/ag.vim'
+" }}}
+
+" Colours {{{
+Plug 'chriskempson/base16-vim'
+Plug 'nanotech/jellybeans.vim'
+" }}}
+
+" NetRW {{{
+Plug 'tpope/vim-vinegar'
+Plug 'dbakker/vim-projectroot'
+" }}}
+
+" EditorConfig {{{
+Plug 'editorconfig/editorconfig-vim'
+" }}}
+
+call plug#end()
+" }}}
+
+" Configuration {{{
+" Status Bar {{{
+set laststatus=2
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 0
+set shortmess=atTiOI
+" }}}
+
+" Gist {{{
+let g:gist_clip_command = 'pbcopy'
+let g:gist_open_browser_after_post = 1
+let g:gist_private = 1
+" }}}
+
+" Copy/paste {{{
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set autoindent
+set smartindent
+let g:indent_guides_enable_on_vim_startup = 1
+
+" }}}
+
+" Unite {{{
+
+" Excluded directories for unite
+call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
+  \ 'ignore_pattern', join([
+  \ '\.git/',
+  \ '\.sass-cache/',
+  \ '\node_modules/',
+  \ '\.svn/',
+  \ '\.hg/',
+  \ '\.bundle/',
+  \ 'vendor/',
+  \ 'tmp/',
+  \ 'log/'
+  \ ], '\|'))
+
+" Ctrlp replacement
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+" Build the ctrlp function, using projectroot to define the 
+" working directory.
+function! Unite_ctrlp()
+  execute ':Unite  -buffer-name=files -start-insert buffer file_rec:'.ProjectRootGuess().'/'
+endfunction
+
+" Call these custom settings on all unite buffers:
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  imap <buffer> <C-j> <Plug>(unite_select_next_line)
+  imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  imap <buffer> <c-a> <Plug>(unite_choose_action)
+
+  imap <silent><buffer><expr> <C-s> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+endfunction
+
+" Tell unit to use ag for searching
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+nnoremap <C-P> :call Unite_ctrlp()<cr>
+nnoremap <leader>y :Unite history/yank<cr>
+nnoremap <leader>s :Unite -quick-match buffer<cr>
+
+" }}}
+
+" Search {{{
+set nohlsearch
+set incsearch
+set ignorecase
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set magic
+set wildmode=longest:full,list:full
+" }}}
+
+" Terminal Bells {{{
+set visualbell
+set noerrorbells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+" }}}
+
+" Leader Key {{{
+let mapleader="\\"
+let g:mapleader="\\"
+" }}}
+
+" Colour Scheme {{{
+syntax on
+set background=dark
+colorscheme base16-default
+
+if has("gui_running")
+  colorscheme jellybeans
+endif
+set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
+" }}}
+
+" NetRW {{{
+set autochdir
+let g:netrw_banner=0
+" }}}
+
+" Editor settings {{{
+set nowrap
+set number
+
+set listchars=tab:▒\ ,trail:⎵
+set list
+
+" Disabled Q (ex)
+nnoremap Q <nop>
+" }}}
+
+" Split settings {{{
+set lazyredraw
+au VimResized * :wincmd =
+nnoremap <silent> <C-w>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
+" }}}
+
+" Swapfile Settings {{{
+set backupdir=~/.nvim/tmp/backup//
+set directory=~/.nvim/tmp/swap//
+set undodir=~/.nvim/tmp/undo//
+" }}}
+
+" .vimrc settings {{{
+" Enable per-project vimrcs
+set exrc   " enable per-directory .vimrc files
+set secure " disable unsafe commands in local .vimrc files
+" }}}
+" }}}
