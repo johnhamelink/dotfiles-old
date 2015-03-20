@@ -15,6 +15,10 @@ Plug 'drmingdrmer/xptemplate'
 Plug 'johnhamelink/custom-xptemplate-snippets'
 " }}}
 
+" Syntax Checking & Linting {{{
+Plug 'scrooloose/syntastic'
+" }}}
+
 " Rails {{{
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
@@ -56,11 +60,12 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Search {{{
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
+Plug 'osyo-manga/vim-over'
 " }}}
 
 " Colours {{{
-Plug 'chriskempson/base16-vim'
 Plug 'nanotech/jellybeans.vim'
+Plug 'JarrodCTaylor/vim-256-color-schemes'
 " }}}
 
 " NetRW {{{
@@ -161,6 +166,20 @@ set ignorecase
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set magic
 set wildmode=longest:full,list:full
+
+function! VisualFindAndReplace()
+  :OverCommandLine%s/
+  :w
+endfunction
+
+function! VisualFindAndReplaceWithSelection() range
+  :'<,'>OverCommandLine s/
+  :w
+endfunction
+
+nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
+xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
+
 " }}}
 
 " Terminal Bells {{{
@@ -178,10 +197,15 @@ let g:mapleader="\\"
 " Colour Scheme {{{
 syntax on
 set background=dark
-colorscheme base16-default
+colorscheme pop-rocks
+
 
 if has("gui_running")
   colorscheme jellybeans
+else
+  let g:indent_guides_auto_colors = 0
+  hi IndentGuidesOdd  ctermbg=black
+  hi IndentGuidesEven ctermbg=DarkBlue
 endif
 set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
 " }}}
