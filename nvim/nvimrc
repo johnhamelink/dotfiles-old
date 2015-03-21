@@ -39,7 +39,9 @@ Plug 'Rykka/colorv.vim'
 " }}}
 
 " Markdown {{{
-Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'junegunn/goyo.vim'
 " }}}
 
 " Handlebars {{{
