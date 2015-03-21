@@ -11,8 +11,10 @@ Plug 'bling/vim-airline'
 " }}}
 
 " Templates {{{
-Plug 'drmingdrmer/xptemplate'
-Plug 'johnhamelink/custom-xptemplate-snippets'
+"Plug 'drmingdrmer/xptemplate'
+"Plug 'johnhamelink/custom-xptemplate-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'
 " }}}
 
 " Syntax Checking & Linting {{{
@@ -61,6 +63,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " Search {{{
 Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
 Plug 'osyo-manga/vim-over'
@@ -160,6 +163,16 @@ nnoremap <C-P> :call Unite_ctrlp()<cr>
 nnoremap <leader>y :Unite history/yank<cr>
 nnoremap <leader>s :Unite -quick-match buffer<cr>
 
+" }}}
+
+" Snippets {{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 " }}}
 
 " Search {{{

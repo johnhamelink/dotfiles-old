@@ -1,0 +1,17 @@
+# RSpec
+
+snippet des "describe '...' do ... end"
+describe '$1' do
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet let "let(:...) { ... }"
+let(:$1) { ${0:${VISUAL}} }
+endsnippet
+
+snippet it "it { ... }"
+it '$1' do
+	${0:${VISUAL}}
+end
+endsnippet

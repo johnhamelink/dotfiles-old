@@ -1,0 +1,47 @@
+snippet ember "import Ember from 'ember'" b
+import Ember from 'ember';
+endsnippet
+
+snippet model "export default Ember.model.extend({...});" b
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet controller "export default Ember.controller.extend({...});" b
+import DS from 'ember-data';
+
+export default Ember.Controller.extend({
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet helper "export default Ember.Handlebars.makeBoundHelper(...);" b
+import ember from 'ember';
+
+export function ${1}(${2}) {
+	${0:${VISUAL}}
+}
+
+export default ember.handlebars.makeboundhelper(`!p snip.rv = t[1]`);
+endsnippet
+
+snippet component "export default Ember.Component.extend({...});" b
+import ember from 'ember';
+import layout from '../templates/components/${1}';
+
+export default Ember.Component.extend({
+	layout: layout,
+	${0:${VISUAL}}
+});
+endsnippet
+
+snippet route "export default Ember.Route.extend({});" b
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+	${0:${VISUAL}}
+});
+endsnippet
