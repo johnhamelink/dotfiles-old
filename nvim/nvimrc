@@ -58,6 +58,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 " }}}
 
 " Search {{{
+Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
 Plug 'osyo-manga/vim-over'
@@ -129,7 +130,7 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 " Build the ctrlp function, using projectroot to define the 
 " working directory.
 function! Unite_ctrlp()
-  execute ':Unite  -buffer-name=files -start-insert buffer file_rec:'.ProjectRootGuess().'/'
+  execute ':Unite  -buffer-name=files -start-insert buffer file_rec/async:'.ProjectRootGuess().'/'
 endfunction
 
 " Call these custom settings on all unite buffers:
