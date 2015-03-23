@@ -41,7 +41,7 @@ Plug 'Rykka/colorv.vim', { 'for': ['scss', 'css'] }
 " Markdown {{{
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
-Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+Plug 'junegunn/goyo.vim', { 'for': 'markdown', 'on': 'Goyo' }
 " }}}
 
 " Handlebars {{{
@@ -50,15 +50,15 @@ Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
 " Git {{{
 Plug 'airblade/vim-gitgutter'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim', {'on': 'gist'}
+Plug 'mattn/gist-vim', {'on': 'gist'}
 " }}}
 
 " Search {{{
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite.vim'
-Plug 'rking/ag.vim'
+Plug 'rking/ag.vim', {'on': 'Ag'}
 Plug 'osyo-manga/vim-over'
 " }}}
 
