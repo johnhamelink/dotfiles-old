@@ -45,6 +45,9 @@ antigen use oh-my-zsh
 
 antigen bundles <<EOBUNDLES
 
+  # SSH
+  ssh-agent
+
   # Vagrant
   vagrant
 
