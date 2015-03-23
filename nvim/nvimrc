@@ -11,8 +11,6 @@ Plug 'bling/vim-airline'
 " }}}
 
 " Templates {{{
-"Plug 'drmingdrmer/xptemplate'
-"Plug 'johnhamelink/custom-xptemplate-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 " }}}
@@ -22,43 +20,38 @@ Plug 'scrooloose/syntastic'
 " }}}
 
 " Rails {{{
-Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-endwise'
-Plug 'ecomba/vim-ruby-refactoring'
+Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+Plug 'vim-ruby/vim-ruby' , { 'for': ['ruby', 'eruby'] }
+Plug 'kana/vim-textobj-user', { 'for': ['ruby', 'eruby'] }
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': ['ruby', 'eruby'] }
+Plug 'tpope/vim-bundler', { 'for': ['ruby', 'eruby'] }
+Plug 'tpope/vim-endwise', { 'for': ['ruby', 'eruby'] }
+Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby', 'eruby'] }
 " }}}
 
 " Elixir {{{
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 "}}}
 
 " CSS {{{
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'Rykka/colorv.vim'
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
+Plug 'Rykka/colorv.vim', { 'for': ['scss', 'css'] }
 " }}}
 
 " Markdown {{{
-Plug 'tpope/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'junegunn/goyo.vim'
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 " }}}
 
 " Handlebars {{{
-Plug 'mustache/vim-mustache-handlebars'
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 " }}}
 
 " Git {{{
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-" }}}
-
-" Indentation {{{
-Plug 'sdanielf/vim-stdtabs'
-Plug 'nathanaelkane/vim-indent-guides'
 " }}}
 
 " Search {{{
@@ -70,8 +63,7 @@ Plug 'osyo-manga/vim-over'
 " }}}
 
 " Colours {{{
-Plug 'nanotech/jellybeans.vim'
-Plug 'JarrodCTaylor/vim-256-color-schemes'
+Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
 " }}}
 
 " NetRW {{{
@@ -108,7 +100,7 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_enable_on_vim_startup = 1
 
 " }}}
 
@@ -132,7 +124,7 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
-" Build the ctrlp function, using projectroot to define the 
+" Build the ctrlp function, using projectroot to define the
 " working directory.
 function! Unite_ctrlp()
   execute ':Unite  -buffer-name=files -start-insert buffer file_rec/async:'.ProjectRootGuess().'/'
@@ -211,19 +203,15 @@ let g:mapleader="\\"
 " }}}
 
 " Colour Scheme {{{
-syntax on
+syntax enable
 set background=dark
-colorscheme pop-rocks
+colorscheme Tomorrow-Night-Bright
 
 
 if has("gui_running")
   colorscheme jellybeans
-else
-  let g:indent_guides_auto_colors = 0
-  hi IndentGuidesOdd  ctermbg=black
-  hi IndentGuidesEven ctermbg=DarkBlue
+  set guifont=PragmataPro\ 11
 endif
-set guifont=Meslo\ LG\ S\ Regular\ for\ Powerline:h11
 " }}}
 
 " NetRW {{{
