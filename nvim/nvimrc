@@ -50,8 +50,8 @@ Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
 " Git {{{
 Plug 'airblade/vim-gitgutter'
-Plug 'mattn/webapi-vim', {'on': 'gist'}
-Plug 'mattn/gist-vim', {'on': 'gist'}
+Plug 'mattn/webapi-vim', { 'on': 'Gist' }
+Plug 'mattn/gist-vim', { 'on': 'Gist' }
 " }}}
 
 " Search {{{
@@ -73,6 +73,10 @@ Plug 'dbakker/vim-projectroot'
 
 " EditorConfig {{{
 Plug 'editorconfig/editorconfig-vim'
+" }}}
+
+" Wakatime {{{
+Plug 'wakatime/vim-wakatime'
 " }}}
 
 call plug#end()
