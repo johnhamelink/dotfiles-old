@@ -1,6 +1,6 @@
 [options]
 scrollback_lines = 10000
-font             = pragmatapro regular 10
+font             = PragmataPro Regular 10
 #font             = Input Mono Condensed 9
 clickable_url    = true
 browser          = chromium
@@ -10,33 +10,19 @@ audible_bell     = true
 
 cursor_blink = off
 
+# Solarized dark color scheme
+
 [colors]
-
-# Gotham
-#foreground      = #98d1ce
-#foreground_bold = #98d1ce
-#cursor          = #98d1ce
-#background      = #0a0f14
-#color0  = #0a0f14
-#color8  = #10151b
-#color1  = #c33027
-#color9  = #d26939
-#color2  = #26a98b
-#color10 = #081f2d
-#color3  = #edb54b
-#color11 = #245361
-#color4  = #195465
-#color12 = #093748
-#color5  = #4e5165
-#color13 = #888ba5
-#color6  = #33859d
-#color14 = #599caa
-#color7  = #98d1ce
-#color15 = #d3ebe9
-
-# Solarized
-background = #002b36
 foreground = #839496
+foreground_bold = #eee8d5
+#foreground_dim = #888888
+background = #002b36
+cursor = #93a1a1
+
+# if unset, will reverse foreground and background
+#highlight = #839496
+
+# colors from color0 to color254 can be set
 color0 = #073642
 color1 = #dc322f
 color2 = #859900
@@ -53,83 +39,3 @@ color12 = #839496
 color13 = #6c71c4
 color14 = #93a1a1
 color15 = #fdf6e3
-
-# Tomorrow Night
-#foreground = #c5c8c6
-#background = #1d1f21
-#cursor = #aeafad
-#color0 = #000000
-#color1 = #912226
-#color2 = #778900
-#color3 = #ae7b00
-#color4 = #1d2594
-#color5 = #682a9b
-#color6 = #2b6651
-#color7 = #929593
-#color8 = #666666
-#color9 = #cc6666
-#color10 = #b5bd68
-#color11 = #f0c674
-#color12 = #81a2be
-#color13 = #b294bb
-#color14 = #8abeb7
-#color15 = #ecebec
-
-
-# Tomorrow Night Bright
-#foreground = #c5c8c6
-#background = #1d1f21
-#cursor     = #aeafad
-#color0     = #000000
-#color1     = #cc6666
-#color2     = #b5bd68
-#color3     = #de935f
-#color4     = #81a2be
-#color5     = #b294bb
-#color6     = #8abeb7
-#color7     = #373b41
-#color8     = #666666
-#color9     = #FF3334
-#color10    = #9ec400
-#color11    = #f0c674
-#color12    = #81a2be
-#color13    = #b777e0
-#color14    = #54ced6
-#color15    = #282a2e
-
-
-# Base16 Ocean
-# Scheme: Chris Kempson (http://chriskempson.com)
-#foreground      = #c0c5ce
-#foreground_bold = #c0c5ce
-#cursor          = #c0c5ce
-#background      = #2b303b
-#
-## 16 color space
-#color0  = #2b303b
-#color1  = #bf616a
-#color2  = #a3be8c
-#color3  = #ebcb8b
-##color4 = #8fa1b3
-#color4  = #576C82
-#color5  = #b48ead
-#color6  = #96b5b4
-#color7  = #c0c5ce
-#color8  = #65737e
-#color9  = #bf616a
-#color10 = #a3be8c
-#color11 = #ebcb8b
-#color12 = #8fa1b3
-#color13 = #b48ead
-#color14 = #96b5b4
-#color15 = #eff1f5
-#
-## 256 color space
-#color16 = #d08770
-#color17 = #ab7967
-#color18 = #343d46
-#color19 = #4f5b66
-#color20 = #a7adba
-#color21 = #dfe1e8
-
-
