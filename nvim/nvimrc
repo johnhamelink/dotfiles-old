@@ -7,7 +7,7 @@ if !1 | finish | endif
 call plug#begin('~/.nvim/plugged')
 
 " Statusbar {{{
-Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 " }}}
 
 " Templates {{{
@@ -85,8 +85,16 @@ call plug#end()
 " Configuration {{{
 " Status Bar {{{
 set laststatus=2
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 0
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#tabline#enabled = 0
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ 'component': {
+  \   'readonly': '%{&readonly?"⭤":""}'
+  \ },
+  \ 'separator': { 'left': '⮀', 'right': '⮂' },
+  \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+\ }
 set shortmess=atTiOI
 " }}}
 
