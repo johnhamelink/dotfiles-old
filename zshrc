@@ -1,4 +1,3 @@
-source ~/.antigen/antigen.zsh
 
 export EDITOR=vim
 
@@ -13,6 +12,13 @@ git-unmerged-into() {
 
 git-merged-into() {
   git branch --merged $@
+}
+
+
+screenshot (){
+  echo "Taking Screenshot..."
+  maim -s screenshot.png
+  uploadImage screenshot.png
 }
 
 uploadImage (){
@@ -41,70 +47,75 @@ alias stats="inxi -F -M -c 31"
 alias lsmount="mount | column -t"
 alias vim="nvim"
 
-antigen use oh-my-zsh
+export TERM="xterm-256color"
 
-antigen bundles <<EOBUNDLES
+source ~/.zgen/zgen.zsh
+
+if ! zgen saved; then
+  echo "Creating a zgen save"
+  zgen oh-my-zsh
 
   # SSH
-  ssh-agent
+  zgen oh-my-zsh plugins/ssh-agent
 
   # Vagrant
-  vagrant
+  zgen oh-my-zsh plugins/vagrant
 
   # Java / Android
-  gradle
-  adb
+  zgen oh-my-zsh plugins/gradle
+  zgen oh-my-zsh plugins/adb
 
   # Ruby/Rails stuff
-  bundler
-  gem
-  rails
-  rbenv
+  zgen oh-my-zsh plugins/bundler
+  zgen oh-my-zsh plugins/gem
+  zgen oh-my-zsh plugins/rbenv
 
   # EmberJS
-  ember-cli
-  https://gist.github.com/WMeldon/19e822d30a57f48c36cd
+  zgen oh-my-zsh plugins/ember-cli
 
   # Pairing
-  tmux
+  zgen oh-my-zsh plugins/tmux
 
   # Being organised
-  taskwarrior
+  zgen oh-my-zsh plugins/taskwarrior
 
   # Make the terminal a nicer place to be: Linux Edition
-  command-not-found
-  cp
-  docker
-  zsh-users/zsh-completions src
+  zgen oh-my-zsh plugins/command-not-found
+  zgen oh-my-zsh plugins/cp
+  zgen oh-my-zsh plugins/docker
+  zgen load zsh-users/zsh-completions src
 
   # Make the terminal a nicer place to be: ZSH Edition
   # "If you want to use the zsh-syntax-highlighting script along with
   # history-substring-search, then make sure that you load it *before* you load
   # this script:"
-  zsh-users/zsh-syntax-highlighting
-  history-substring-search
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen oh-my-zsh plugins/history-substring-search
 
   # Git stuff
-  git
-  git-extras
-  bobthecow/git-flow-completion
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/git-extras
+  zgen load bobthecow/git-flow-completion
 
   # Prettiness
-  nojhan/liquidprompt
+  zgen load nojhan/liquidprompt
 
-EOBUNDLES
-
-# Source os-specific files.
-envfile="$HOME/.dotfiles/zsh/`uname`.sh"
-if [ -r $envfile ]; then
-  . $envfile
 fi
 
-envfile="$HOME/.dotfiles/zsh/`uname -n`.sh"
-if [ -r $envfile ]; then
-  . $envfile
-fi
+  # Source os-specific files.
+  envfile="$HOME/.dotfiles/zsh/`uname`.sh"
+  if [ -r $envfile ]; then
+    . $envfile
+  fi
 
-antigen apply
+  envfile="$HOME/.dotfiles/zsh/`uname -n`.sh"
+  if [ -r $envfile ]; then
+    . $envfile
+  fi
+
+if ! zgen saved; then
+  zgen save
+fi
 
 source "$HOME/.zprofile"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
