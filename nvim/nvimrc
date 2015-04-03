@@ -226,6 +226,8 @@ set number
 set listchars=tab:▒\ ,trail:⎵
 set list
 
+" Make backspace work like you'd expect it to
+set backspace=indent,eol,start 
 " Disabled Q (ex)
 nnoremap Q <nop>
 " }}}
