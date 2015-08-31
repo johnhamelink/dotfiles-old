@@ -19,13 +19,13 @@ export default Ember.Controller.extend({
 endsnippet
 
 snippet helper "export default Ember.Handlebars.makeBoundHelper(...);" b
-import ember from 'ember';
+import Ember from 'ember';
 
 export function ${1}(${2}) {
 	${0:${VISUAL}}
 }
 
-export default ember.handlebars.makeboundhelper(`!p snip.rv = t[1]`);
+export default Ember.Handlebars.makeBoundHelper(`!p snip.rv = t[1]`);
 endsnippet
 
 snippet component "export default Ember.Component.extend({...});" b
