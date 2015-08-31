@@ -42,6 +42,10 @@ dexcount (){
   rm -R temp > /dev/null
 }
 
+function gi() {
+  curl https://www.gitignore.io/api/$@;
+}
+
 alias server="ruby -run -e httpd . -p 3210"
 alias stats="inxi -F -M -c 31"
 alias lsmount="mount | column -t"
