@@ -4,6 +4,7 @@
 if !1 | finish | endif
 
 " Plugins {{{
+
 call plug#begin('~/.nvim/plugged')
 
 " Statusbar {{{
@@ -12,7 +13,7 @@ Plug 'itchyny/lightline.vim'
 
 " Templates {{{
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 " }}}
 
 " Syntax Checking & Linting {{{
@@ -31,7 +32,7 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby', 'eruby'] }
 
 " Elixir {{{
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-"}}}
+" }}}
 
 " CSS {{{
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'css'] }
@@ -55,7 +56,7 @@ Plug 'mattn/gist-vim', { 'on': 'Gist' }
 " }}}
 
 " Search {{{
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim', {'on': 'Ag'}
@@ -80,13 +81,13 @@ Plug 'wakatime/vim-wakatime'
 " }}}
 
 call plug#end()
+
 " }}}
 
 " Configuration {{{
+
 " Status Bar {{{
 set laststatus=2
-"let g:airline_powerline_fonts=1
-"let g:airline#extensions#tabline#enabled = 0
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'component': {
@@ -123,7 +124,10 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ 'ignore_pattern', join([
   \ '\.git/',
   \ '\.sass-cache/',
-  \ '\node_modules/',
+  \ 'bower_components/',
+  \ 'dist/',
+  \ 'node_modules/',
+  \ '\.divshot-cache/',
   \ '\.svn/',
   \ '\.hg/',
   \ '\.bundle/',
@@ -131,6 +135,7 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ 'tmp/',
   \ 'log/'
   \ ], '\|'))
+
 
 " Ctrlp replacement
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -227,8 +232,26 @@ endif
 " }}}
 
 " NetRW {{{
-set autochdir
 let g:netrw_banner=0
+" }}}
+
+" Terminal {{{
+
+" Move from the neovim terminal window to
+" somewhere else - vim style.
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
+tnoremap <esc>  <C-\><C-n>
+
+" Using neoterm, run rspec test
+let g:neoterm_clear_cmd = "clear; printf '=%.0s' {1.80}; clear"
+let g:neoterm_automap_keys = ',tt'
+nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
+nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
+nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
+nnoremap <silent> ,tc :call neoterm#test#close_all()<cr>
 " }}}
 
 " Editor settings {{{
@@ -262,4 +285,5 @@ set undodir=~/.nvim/tmp/undo//
 set exrc   " enable per-directory .vimrc files
 set secure " disable unsafe commands in local .vimrc files
 " }}}
+
 " }}}
