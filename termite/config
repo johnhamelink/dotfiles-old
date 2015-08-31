@@ -1,7 +1,6 @@
 [options]
 scrollback_lines = 10000
 font             = PragmataPro Regular 10
-#font             = Input Mono Condensed 9
 clickable_url    = true
 browser          = chromium
 allow_bold       = true
