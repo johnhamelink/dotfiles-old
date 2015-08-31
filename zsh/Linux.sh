@@ -4,7 +4,6 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/systemd
 fi
 
-alias pacman="pacaur"
 alias gksu="gksudo"
 alias open="xdg-open"
 export BROWSER="chromium"
