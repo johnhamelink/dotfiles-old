@@ -72,6 +72,10 @@ Plug 'tpope/vim-vinegar'
 Plug 'dbakker/vim-projectroot'
 " }}}
 
+" Terminal {{{
+Plug 'kassio/neoterm'
+" }}}
+
 " EditorConfig {{{
 Plug 'editorconfig/editorconfig-vim'
 " }}}
@@ -245,8 +249,8 @@ tnoremap <C-w>k <C-\><C-n><C-w>k
 tnoremap <C-w>l <C-\><C-n><C-w>l
 tnoremap <esc>  <C-\><C-n>
 
-" Using neoterm, run rspec test
-let g:neoterm_clear_cmd = "clear; printf '=%.0s' {1.80}; clear"
+" Using neoterm, run rspec tests
+let g:neoterm_clear_cmd = "clear; printf '=%.0s' {1..80}; clear"
 let g:neoterm_automap_keys = ',tt'
 nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
 nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
