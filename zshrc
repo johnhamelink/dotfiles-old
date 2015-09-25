@@ -1,5 +1,5 @@
 
-export EDITOR=vim
+export EDITOR=nvim
 
 git-export() {
   git clone --depth=1 "$@"
