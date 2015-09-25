@@ -65,6 +65,7 @@ Plug 'osyo-manga/vim-over'
 
 " Colours {{{
 Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
+Plug 'junegunn/rainbow_parentheses.vim'
 " }}}
 
 " NetRW {{{
@@ -233,6 +234,10 @@ if has("gui_running")
   colorscheme jellybeans
   set guifont=PragmataPro\ 11
 endif
+
+" Activate Rainbow Parentheses
+autocmd VimEnter * RainbowParentheses
+
 " }}}
 
 " NetRW {{{
