@@ -96,6 +96,9 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-syntax-highlighting
   zgen oh-my-zsh plugins/history-substring-search
 
+  # Open the last working directory for new shells
+  zgen oh-my-zsh plugins/last-working-dir
+
   # Git stuff
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/git-extras
