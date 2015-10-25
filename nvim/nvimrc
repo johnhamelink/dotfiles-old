@@ -93,13 +93,16 @@ call plug#end()
 
 " Status Bar {{{
 set laststatus=2
+set encoding=utf-8
+scriptencoding utf-8
+
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'component': {
-  \   'readonly': '%{&readonly?"⭤":""}'
+  \   'readonly': '%{&readonly?"\uE0A2":""}'
   \ },
-  \ 'separator': { 'left': '⮀', 'right': '⮂' },
-  \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+  \ 'separator': { 'left': "", 'right': "" },
+  \ 'subseparator': { 'left': "|", 'right': "|" }
 \ }
 set shortmess=atTiOI
 " }}}
