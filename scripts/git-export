@@ -5,4 +5,4 @@ function _git-export() {
   rm -rf "$2/.git"
 }
 
-_git-export
+_git-export $@

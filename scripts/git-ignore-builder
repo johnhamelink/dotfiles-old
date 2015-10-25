@@ -4,4 +4,4 @@ function _git-ignore-builder() {
   curl https://www.gitignore.io/api/$@;
 }
 
-_git-ignore-builder
+_git-ignore-builder $@
