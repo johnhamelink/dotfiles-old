@@ -1,19 +1,5 @@
-
 export EDITOR=nvim
-
-git-export() {
-  git clone --depth=1 "$@"
-  rm -rf "$2/.git"
-}
-
-git-unmerged-into() {
-  git branch --no-merged $@
-}
-
-git-merged-into() {
-  git branch --merged $@
-}
-
+export PATH="$PATH:$HOME/.dotfiles/scripts"
 
 screenshot (){
   echo "Taking Screenshot..."
@@ -40,10 +26,6 @@ dexcount (){
   `unzip temp/$1+copy > /dev/null`
   cat temp/classes.dex | head -c 92 | tail -c 4 | hexdump -e '1/4 "%d\n"'
   rm -R temp > /dev/null
-}
-
-function gi() {
-  curl https://www.gitignore.io/api/$@;
 }
 
 alias server="ruby -run -e httpd . -p 3210"

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+function _git-ignore-builder() {
+  curl https://www.gitignore.io/api/$@;
+}
+
+_git-ignore-builder

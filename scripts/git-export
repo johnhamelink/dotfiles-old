@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+function _git-export() {
+  git clone --depth=1 "$@"
+  rm -rf "$2/.git"
+}
+
+_git-export

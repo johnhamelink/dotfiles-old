@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+function _cheatsheet() {
+  cat <<HERE
+  John's handy wee git cheatsheet:
+
+    - Git up - Does a git pull that handles a bunch of edge cases
+      git up
+
+    - Git Sweep - Cleans up your remote branches
+      git sweep [preview,cleanup]
+
+    - Git Undo - Removes the last 1 or n commit(s)
+      git undo [n]
+
+    - Git Obliterate - Removes a file from git across all versions
+      git obliterate file.json
+
+    - Git pr - Checks out a github pull request
+      git pr [pr_url | pr_number] [upstream]
+      git pr clean
+
+HERE
+}
+
+_cheatsheet $1
