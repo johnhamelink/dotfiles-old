@@ -37,8 +37,7 @@ Session.vim
 .netrwhist
 nvim/plugged/*
 tmp/
-weechat/logs/*
-weechat/sec.conf
+weechat/
 emacs/.cask
 emacs/auto-save-list/
 emacs/var/
