@@ -9,7 +9,7 @@ chruby ruby-2.2
 # Exenv
 if which exenv > /dev/null; then eval "$(exenv init -)"; fi
 
-# AWS ClI
+# AWS CLI
 source /usr/local/share/zsh/site-functions/_aws
 
 # Find a Player
