@@ -5,7 +5,7 @@ if !1 | finish | endif
 
 " Plugins {{{
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Statusbar {{{
 Plug 'itchyny/lightline.vim'
@@ -303,9 +303,9 @@ nnoremap <silent> <C-w>- :exe "resize " . (winheight(0) * 2/3)<CR>
 " }}}
 
 " Swapfile Settings {{{
-set backupdir=~/.nvim/tmp/backup//
-set directory=~/.nvim/tmp/swap//
-set undodir=~/.nvim/tmp/undo//
+set backupdir=~/.config/nvim/tmp/backup//
+set directory=~/.config/nvim/tmp/swap//
+set undodir=~/.config/nvim/tmp/undo//
 " }}}
 
 " .vimrc settings {{{
