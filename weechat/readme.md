@@ -5,7 +5,7 @@ http://dev.weechat.org/post/2011/08/28/Beautify-your-WeeChat
 
 * /script update
 * /script upgrade
-* /script install beep.pl isgd.pl listbuffer.py update_notifier.py
+* /script install beep.pl isgd.pl listbuffer.py update_notifier.py buffers.pl
 * /set irc.look.smart_filter on
 * /filter add irc_smart * irc_smart_filter *
 * /set weechat.color.chat_nick_colors "cyan,magenta,green,brown,lightblue,default,lightcyan,lightmagenta,lightgreen,blue,31,35,38,40,49,63,70,80,92,99,112,126,130,138,142,148,160,162,167,169,174,176,178,184,186,210,212,215,247"
