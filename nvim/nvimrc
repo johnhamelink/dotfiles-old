@@ -213,6 +213,18 @@ endfunction
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
+
+if executable('pt')
+  " Tell unite to use ag for searching
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_encoding = 'utf-8'
+  " Tell ag.vim to use pt binary
+  let g:agprg="pt --column"
+  let g:ag_working_path_mode="r"
+endif
+
 " }}}
 
 " Terminal Bells {{{
