@@ -32,6 +32,7 @@ alias server="ruby -run -e httpd . -p 3210"
 alias stats="inxi -F -M -c 31"
 alias lsmount="mount | column -t"
 alias vim="nvim"
+alias diff="colordiff"
 
 export TERM="xterm-256color"
 
