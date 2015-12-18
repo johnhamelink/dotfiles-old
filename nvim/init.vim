@@ -13,11 +13,11 @@ Plug 'itchyny/lightline.vim'
 
 " Templates {{{
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py' }
 " }}}
 
 " Syntax Checking & Linting {{{
-Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 " }}}
 
 " Rails {{{
@@ -31,7 +31,11 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby', 'eruby'] }
 " }}}
 
 " Elixir {{{
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'awetzel/vim-elixir', { 'branch': 'nvim-rplugin' }
+"Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'Thinca/vim-ref', { 'for': 'elixir' } " For documentation
+Plug 'powerman/vim-plugin-AnsiEsc', { 'for': 'elixir' } " For handling coloured escape sequences in Elixir docs
+Plug 'sanmiguel/helpex.vim', { 'for': 'elixir' } " For documentation & Autocomplete
 " }}}
 
 " CSS {{{
@@ -125,6 +129,10 @@ set smartindent
 
 " }}}
 
+" Neomake {{{
+autocmd! BufWritePost * Neomake
+" }}}
+
 " Unite {{{
 
 " Excluded directories for unite
@@ -152,7 +160,7 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 " Build the ctrlp function, using projectroot to define the
 " working directory.
 function! Unite_ctrlp()
-  execute ':Unite  -buffer-name=files -start-insert buffer file_rec/async:'.ProjectRootGuess().'/'
+  execute ':Unite  -buffer-name=files -start-insert file_rec/async'
 endfunction
 
 " Call these custom settings on all unite buffers:
