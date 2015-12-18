@@ -20,3 +20,6 @@ eval "$(docker-machine env default)"
 
 # Postgres.app
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+
+# Gephi
+alias gephi="~/Applications/Gephi.app/Contents/MacOS/Gephi --jdkhome $(/usr/libexec/java_home -v 1.7)"
