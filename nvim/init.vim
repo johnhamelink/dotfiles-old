@@ -284,10 +284,7 @@ tnoremap <esc>  <C-\><C-n>
 " Using neoterm, run rspec tests
 let g:neoterm_clear_cmd = "clear; printf '=%.0s' {1..80}; clear"
 let g:neoterm_automap_keys = ',tt'
-nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
-nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
-nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
-nnoremap <silent> ,tc :call neoterm#test#close_all()<cr>
+nnoremap <silent> ,qq :call neoterm#close()<cr>
 " }}}
 
 " Editor settings {{{
