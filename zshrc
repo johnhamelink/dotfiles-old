@@ -42,10 +42,9 @@ if ! zgen saved; then
   echo "Creating a zgen save"
   zgen oh-my-zsh
 
-  # SSH
+  # Servers
   zgen oh-my-zsh plugins/ssh-agent
-
-  # Vagrant
+  zgen oh-my-zsh plugins/aws
   zgen oh-my-zsh plugins/vagrant
 
   # Java / Android
@@ -62,9 +61,6 @@ if ! zgen saved; then
 
   # Pairing
   zgen oh-my-zsh plugins/tmux
-
-  # Being organised
-  zgen oh-my-zsh plugins/taskwarrior
 
   # Make the terminal a nicer place to be: Linux Edition
   zgen oh-my-zsh plugins/command-not-found
