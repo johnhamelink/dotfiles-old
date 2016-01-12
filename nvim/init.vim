@@ -149,7 +149,9 @@ call unite#custom_source('file_rec/async,file_mru,file,buffer,grep',
   \ '\.bundle/',
   \ 'vendor/',
   \ 'tmp/',
-  \ 'log/'
+  \ 'log/',
+  \ '_build',
+  \ 'deps'
   \ ], '\|'))
 
 
