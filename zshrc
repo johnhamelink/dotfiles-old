@@ -13,6 +13,10 @@ uploadImage (){
     shift
 }
 
+compressPdf() {
+  gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/${3:-"screen"} -dCompatibilityLevel=1.4 -sOutputFile=$2 $1
+}
+
 ctags_ruby (){
   echo "Running ctags on current directory as well as all the bundled gems..."
   ctags -R --exclude=.git --exclude=log --exclude=doc --exclude=tmp ./ $(bundle list --paths)
@@ -51,6 +55,10 @@ if ! zgen saved; then
   zgen oh-my-zsh plugins/gradle
   zgen oh-my-zsh plugins/adb
 
+  # Elixir
+  zgen oh-my-zsh plugins/mix
+  zgen load dalexj/mix_autocomplete mix_autocomplete.zsh
+
   # Ruby/Rails stuff
   zgen oh-my-zsh plugins/bundler
   zgen oh-my-zsh plugins/gem
@@ -74,6 +82,9 @@ if ! zgen saved; then
   # this script:"
   zgen load zsh-users/zsh-syntax-highlighting
   zgen oh-my-zsh plugins/history-substring-search
+
+  # Autoupdate zgen
+  zgen load unixorn/autoupdate-zgen
 
   # Open the last working directory for new shells
   zgen oh-my-zsh plugins/last-working-dir

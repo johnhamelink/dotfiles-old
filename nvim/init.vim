@@ -13,7 +13,8 @@ Plug 'itchyny/lightline.vim'
 
 " Templates {{{
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py', 'for': ['eruby', 'ruby'] }
+"Plug 'Shougo/deoplete.nvim', { 'for': 'elixir' }
 " }}}
 
 " Syntax Checking & Linting {{{
@@ -31,11 +32,14 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby', 'eruby'] }
 " }}}
 
 " Elixir {{{
-Plug 'awetzel/vim-elixir', { 'branch': 'nvim-rplugin' }
-"Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'Thinca/vim-ref', { 'for': 'elixir' } " For documentation
-Plug 'powerman/vim-plugin-AnsiEsc', { 'for': 'elixir' } " For handling coloured escape sequences in Elixir docs
-Plug 'sanmiguel/helpex.vim', { 'for': 'elixir' } " For documentation & Autocomplete
+Plug 'awetzel/elixir.nvim', { 'do': './install.sh' }
+" }}}
+
+" Rust {{{
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 " }}}
 
 " CSS {{{
@@ -130,7 +134,12 @@ set smartindent
 " }}}
 
 " Neomake {{{
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
+" }}}
+
+" Elixir {{{
+"let g:elixir_autobuild = 1
+let g:elixir_showerror = 1
 " }}}
 
 " Unite {{{
@@ -204,6 +213,7 @@ let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
+let g:deoplete#enable_at_startup = 1
 " }}}
 
 " Search {{{
@@ -319,6 +329,12 @@ set undodir=~/.config/nvim/tmp/undo//
 " Enable per-project vimrcs
 set exrc   " enable per-directory .vimrc files
 set secure " disable unsafe commands in local .vimrc files
+" }}}
+
+" Rust-specific config {{{
+set hidden
+let g:racer_cmd = "/Users/john/.cargo/bin/racer"
+let $RUST_SRC_PATH="/Users/john/.rust/src"
 " }}}
 
 " }}}
