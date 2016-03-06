@@ -1,0 +1,426 @@
+#!/bin/bash
+### Dmenu Launcher ################
+# Version 0.5.11 by Scott Garrett #
+# Wintervenom [(at)] gmail.com    #
+###################################
+# Depends on:  dmenu              #
+#   Optional:  slmenu, lsx        #
+###################################
+
+
+###############
+### Globals ###
+###############
+
+# Path to XDG shortcut (*.desktop) directories.
+xdg_paths=(
+    "$HOME/.local/share/applications"
+    /usr/local/share/applications
+    /usr/share/applications
+)
+
+# Path to Dmenu Launcher configuration file.
+config="$HOME/.config/dmenu-launch/config"
+
+# Path to Dmenu Launcher cache will be stored.
+cache="$HOME/.cache/dmenu-launch.cache"
+
+# Path to history file.
+hist="$HOME/.config/dmenu-launch/history"
+
+# Path to lock file.
+lock="$HOME/.config/dmenu-launch/lock"
+
+DMENU_OPTIONS="-y 20"
+
+# Dmenu command.
+dm="dmenu -i $DMENU_OPTIONS"
+if tty &>/dev/null && [[ "$TERM" != 'dumb' ]]; then
+    if type -p slmenu &>/dev/null; then
+        dm='slmenu -i'
+        term_mode=1
+    fi
+elif [[ -z "$DISPLAY" ]]; then
+    exit 1
+fi
+
+# Dmenu prompt strings.
+declare -A dm_prompts=(
+    ['execute']='Execute:'
+    ['clearhist']='Clear History?'
+    ['nobinary']='No such binary.'
+    ['whichbin']='Which one?'
+    ['setterm']='Set terminal:'
+)
+
+# Choose proper LSX binary.
+_using_real_lsx=1
+if type -p lsx-suckless >/dev/null; then
+    # New LSX
+    lsx=lsx-suckless
+elif type -p lsx >/dev/null; then
+    # Old LSX
+    lsx=lsx
+else
+    # Use compgen cleverness.
+    unset _using_real_lsx=1
+    lsx () { compgen -c -X '_*' | grep -Fv "$(compgen -bk)"; }
+fi
+
+# Run in Terminal flag.
+flag_terminal='no'
+
+# Show Binaries flag.
+flag_binaries='yes'
+
+# Show XDG Names flag.
+flag_xdg_names='yes'
+
+# Remember launch history.
+flag_history='yes'
+
+# Cache and re-use last generated menu.
+flag_cache='yes'
+
+# Location of configuration items.
+flag_prefix_opts='no'
+
+# Use first match in the case of multiple binary targets.
+flag_first_match='no'
+
+# Terminal to use.
+terminal='termite'
+
+# Configuration items.
+config_menu=('Clear History' 'Run in Terminal' 'Terminal' 'Detach'
+             'Show Binaries' 'Show XDG Names' 'History' 'Cache'
+             'Run First Match' 'Options in Front')
+
+_debug=0
+
+
+#################
+### Functions ###
+#################
+
+debug () {
+    [[ $_debug == 1 ]] && printf -- "${FUNCNAME[1]}: $1\n" "${@:2}" >&2
+}
+
+set_option () {
+    value="$2"
+    # If the caller wanted to flip a "yes" to a "no" or vise versa...
+    if [[ "$3" == 'flip' ]]; then
+        [[ "$3" == 'flip' && "$value" == 'yes' ]] && value='no' || value='yes'
+    fi
+
+    debug "Set option '%s' from '%s' to '%s'." "$1" "$2" "$3"
+
+    # Create configuration directory if it doesn't exist.
+    mkdir -p "${config%/*}"
+    touch "$config"
+    # Remove the old setting.
+    sed -i "s:^[[:blank:]]*$1=.*::g" "$config"
+    # Append the new setting.
+    echo "$1=\"$value\"" >> "$config"
+    # Remove blank lines.
+    sed -i '/^[[:blank:]]*$/d' "$config"
+    # Reload the configuraton file so it takes effect.
+    . "$config"
+}
+
+list_xdg_shortcuts () {
+    local path
+    echo > "${cache}-shortcuts.tmp"
+    for path in "${xdg_paths[@]}"; do
+        [[ ! -d "$path" ]] && continue
+        while read -r file; do
+            basename=$(basename "$file")
+            if ! grep -Fix "$basename" "${cache}-shortcuts.tmp"; then
+                echo "$file"
+                echo "${file##*/}" >> "${cache}-shortcuts.tmp"
+            fi
+        done < <(find -L "$path" -type f -name '*.desktop')
+    done
+    rm "${cache}-shortcuts.tmp"
+}
+
+build_opt_list () {
+    echo "[${config_menu[2]}: $terminal]"
+    echo "[${config_menu[3]}: $flag_detach]"
+    echo "[${config_menu[6]}: $flag_history]"
+    echo "[${config_menu[7]}: $flag_cache]"
+    echo "[${config_menu[5]}: $flag_xdg_names]"
+    echo "[${config_menu[4]}: $flag_binaries]"
+    echo "[${config_menu[8]}: $flag_first_match]"
+    echo "[${config_menu[9]}: $flag_prefix_opts]"
+}
+
+build_list () {
+    debug 'Building executable list.'
+
+    # Create cache directory if it doesn't exist.
+    mkdir -p "${cache%/*}"
+    # Cache names and executable paths of XDG shortcuts.
+    if [[ "$flag_xdg_names" == 'yes' ]]; then
+        while read -r file; do
+            # Grab the friendly names and paths of the executable.
+            awk -F'=' '
+                /^ *Name=/ { name=$2 }
+                /^ *Exec=/ { exec=$2 }
+                {
+                    if (name != "" && exec != "") {
+                        print name "\t" exec
+                        name=""
+                        exec=""
+                    }
+                }
+            ' "$file" 2>/dev/null
+        done > "$cache" < <(list_xdg_shortcuts)
+        # Start printing out the menu items, starting with XDG shortcut names...
+        sed 's/\t.*$//' "$cache" | sort -fu
+    fi
+    # ...then, the binary names...
+    if [[ "$flag_binaries" == 'yes' ]]; then
+        if [[ $_using_real_lsx ]]; then
+            (IFS=':'; $lsx $PATH | sort -u)
+        else
+            $lsx | sort -u
+        fi
+    fi
+}
+
+cache_menu () {
+    debug 'Caching menu to disk.'
+
+    touch "${cache}-menu.lock"
+    build_list > "${cache}-menu.new"
+    mv "${cache}-menu"{.new,}
+    rm "${cache}-menu.lock"
+}
+
+build_menu () {
+    debug 'Building menu.'
+
+    echo "[${config_menu[1]}: $flag_terminal]"
+
+    [[ "$term_mode" ]] &&
+        echo "[${config_menu[3]}: $flag_detach]"
+
+    [[ "$flag_prefix_opts" == 'yes' ]] &&
+        build_opt_list
+
+    if [[ "$flag_cache" == 'yes' ]]; then
+        [[ ! -f "${cache}-menu" ]] &&
+            cache_menu
+        cat "${cache}-menu"
+    else
+        build_list
+    fi
+
+    # ...then, the configuration options.
+    [[ "$flag_prefix_opts" != 'yes' ]] &&
+        build_opt_list
+}
+
+update_history () {
+    debug "Adding '%s' to history." "$1"
+
+    (echo "$1"; head -9 "$hist" | grep -Fvx "$1") > "$hist.new"
+    mv "$hist"{.new,}
+}
+
+build_hist_menu () {
+    debug 'Combining history with menu items.'
+
+    mkdir -p "${hist%/*}"
+    touch "$hist"
+    menu_items=$(build_menu)
+    hist_items=$(grep -Fx "$(echo "$menu_items")" "$hist")
+    echo "$hist_items" > "$hist" # Keep the history file free of invalids.
+
+    # There's probably a better way, but this works, for now.
+    if [[ ${#hist_items} > 1 ]]; then
+        [[ "$flag_history" == 'yes' ]] &&
+            echo "[${config_menu[0]}]"
+        echo "$hist_items"
+        echo "$menu_items" | grep -Fvx "$hist_items"
+    else
+        echo "$menu_items"
+    fi
+}
+
+program_exists () {
+    type -p "$1" &>/dev/null
+}
+
+launch () {
+    if [[ "$flag_detach" == 'yes' ]]; then
+        debug "Launching detached: %s" "$*"
+
+        # Shouldn't be set when there won't be a terminal attached anymore...
+        export TERM='dumb'
+        # ...and won't be interactive...
+        unset PS1
+        "$@" </dev/null &>/dev/null & disown
+    else
+        debug "Launching: %s" "$*"
+
+        "$@"
+    fi
+}
+
+
+
+############
+### Main ###
+############
+
+# Load configuration
+[[ -f "$config" ]] && . "$config"
+
+# Don't run if an instance of dmenu-launch is already running.
+if [[ -f "$lock" ]]; then
+    pid=$(<"$lock")
+    if [[ $pid ]] && kill -0 "$pid" &>/dev/null; then
+        debug "A dmenu-launch PID $pid is still running."
+        exit 1
+    fi
+fi
+
+echo $BASHPID > "$lock"
+
+cache_menu &
+
+# Launch processes in background, detached and disowned from shell.
+[[ "$term_mode" ]] && flag_detach='no' || flag_detach='yes'
+
+while :; do
+    while [[ -f "${cache}-menu.lock" ]]; do
+        debug "Waiting for menu caching to finish..."
+        sleep 1
+    done
+    # Ask the user to select a program to launch.
+    if [[ "$flag_history" == 'yes' ]]; then
+        app=$(build_hist_menu | $dm -p "${dm_prompts['execute']}")
+    else
+        app=$(build_menu | $dm -p "${dm_prompts['execute']}")
+    fi
+
+    debug "User selected: $app"
+
+    [[ -z "$term_mode" ]] && flag_detach='yes'
+    [[ "$flag_detach" == 'no' ]] && flag_terminal='no'
+    case "$app" in
+        *"[${config_menu[0]}"*) # Clear History
+            confirm=$(printf '%s\n' '[Yes]' '[No]' |
+                $dm -p "${dm_prompts['clearhist']}")
+            [[ -z "$confirm" || "$confirm" == '[No]' ]] && continue
+            rm -f "$hist"
+            touch "$hist"
+            ;;
+        *"[${config_menu[1]}"*) # Run in Terminal
+            set_option flag_terminal $flag_terminal flip
+            echo yes
+            ;;
+        *"[${config_menu[2]}"*) # Set Terminal
+            new_value=$(echo '[Cancel]' | $dm -p "${dm_prompts['setterm']}")
+            [[ -z "$new_value" || "$new_value" == '[Cancel]' ]] && continue
+            if ! type -p "$new_value"; then
+                echo '[OK]' | $dm -p "${dm_prompts['nobinary']}"
+                continue
+            fi
+            set_option terminal "$new_value"
+            ;;
+        *"[${config_menu[3]}"*) # Detach
+            set_option flag_detach $flag_detach flip
+            ;;
+        *"[${config_menu[4]}"*)
+            set_option flag_binaries $flag_binaries flip
+            [[ -f "${cache}-menu" ]] && rm -f "${cache}-menu"
+            ;;
+        *"[${config_menu[5]}"*)
+            set_option flag_xdg_names $flag_xdg_names flip
+            [[ -f "${cache}-menu" ]] && rm -f "${cache}-menu"
+            ;;
+        *"[${config_menu[6]}"*)
+            set_option flag_history $flag_history flip
+            ;;
+        *"[${config_menu[7]}"*)
+            set_option flag_cache $flag_cache flip
+            [[ -f "${cache}-menu" ]] && rm -f "${cache}-menu"
+            ;;
+        *"[${config_menu[8]}"*)
+            set_option flag_first_match $flag_first_match flip
+            ;;
+        *"[${config_menu[9]}"*)
+            set_option flag_prefix_opts $flag_prefix_opts flip
+            ;;
+        *)
+
+            # Quit if nothing was selected.
+            [[ -z "$app" ]] && exit
+
+            selection=$app
+            # If the selection doesn't exist, see if it's an XDG shortcut.
+            if ! program_exists $app; then
+                app=$(grep -F "$app"$'\t' "$cache" | sed 's/.*\t//;s/ %.//g')
+                debug "Exec line: $app"
+
+                if [[ "$flag_first_match" == 'no' ]]; then
+                    # If there's more than one, ask which binary to use.
+                    [[ "$(echo "$app" | wc -l)" != '1' ]] &&
+                        app=$(echo "$app" | $dm -p "${dm_prompts['whichbin']}")
+                else
+                    IFS=$'\n' read app trash <<< "$app"
+                fi
+
+                [[ -z "$app" ]] && exit
+            fi
+
+            # Check and see if the binary exists, and launch it, if so.
+            if program_exists $app; then
+                update_history "$selection"
+                if [[ $flag_terminal = 'no' ]]; then
+                    launch $app
+                else
+                    launch $terminal -e $app
+                fi
+                exit
+            else
+                echo '[OK]' | $dm -p "${dm_prompts['nobinary']}"
+            fi
+            ;;
+    esac
+
+done
+
+### Changelog #################################################################
+# 0.4.1     + Read DMENU_OPTIONS for colors
+# 0.5.0     + Clean-up code
+#           + Cache XDG items to speed up look-up
+#           + Added Terminal option.
+# 0.5.1     + Fix '=' parse bug
+# 0.5.2     + Launch history added
+# 0.5.3     + Clear History option added
+# 0.5.4     + Don't try to source config file if it is not yet created
+# 0.5.5     + Use `slmenu` (if it is installed) when running from a non-dumb
+#             terminal
+# 0.5.6     + Added Detach option in terminal mode
+#           + Added Cache option: generate menu for the next run in the
+#             background
+#           + History optional
+# 0.5.7     + Run in Terminal and Detach options move back to front for
+#             convineince
+#           + Bug fix:  display rest of menu items at first launch
+# 0.5.8     + Change $* to "$@"
+# 0.5.9     + Bug fix: handle XDG entries with more than one friendly name
+#           + Bug fix: add binary and XDG options
+#           + `lsx` is no longer a hard dependency
+#           + Locking mechanism
+# 0.5.10    + Request: configurable prompt strings
+#           + Toggleable location of options
+# 0.5.11    + Request: prioritize XDG shortcuts by order in $xdg_paths.
+#           + Request: add option to launch first match if multiple targets
+#           + Recursively scan XDG shortcut directories
+#           + Bug fix: wait on cache before showing menu
