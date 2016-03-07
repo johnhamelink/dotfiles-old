@@ -14,7 +14,7 @@ Plug 'itchyny/lightline.vim'
 " Templates {{{
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': 'python ./install.py', 'for': ['eruby', 'ruby'] }
-"Plug 'Shougo/deoplete.nvim', { 'for': 'elixir' }
+Plug 'Shougo/deoplete.nvim', { 'for': 'elixir' }
 " }}}
 
 " Syntax Checking & Linting {{{
