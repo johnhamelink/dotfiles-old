@@ -34,7 +34,7 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby', 'eruby'] }
 " Elixir {{{
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'Thinca/vim-ref', { 'for': 'elixir' } " For documentation
-Plug 'awetzel/elixir.nvim', { 'do': './install.sh' }
+Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 " }}}
 
 " Rust {{{
