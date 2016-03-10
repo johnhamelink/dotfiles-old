@@ -41,7 +41,6 @@ values."
      org
      colors
      editorconfig
-     themes-megapack
      base16-theme
      perspectives
      )
@@ -106,8 +105,7 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(base16-tomorrow-dark
                          ujelly
-                         monokai
-                         solarized-dark)
+                         solarized-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
