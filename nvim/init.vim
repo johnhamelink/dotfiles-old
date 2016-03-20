@@ -195,7 +195,7 @@ if executable('pt')
   let g:unite_source_grep_recursive_opt = ''
   let g:unite_source_grep_encoding = 'utf-8'
   " Tell ag.vim to use pt binary
-  let g:agprg="pt --nogroup --nocolor --column"
+  let g:ag_prg="pt --nogroup --nocolor --column"
   let g:ag_working_path_mode="r"
 endif
 
