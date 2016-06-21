@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.dotfiles/scripts"
 
@@ -116,3 +118,9 @@ fi
 
 source "$HOME/.zprofile"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /Users/john/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+export JENV_ROOT=/usr/local/var/jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+source "$HOME/.dotfiles/zsh/dotenv.zsh"
