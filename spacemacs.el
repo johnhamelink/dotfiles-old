@@ -257,6 +257,8 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (add-hook 'alchemist-mode-hook 'company-mode)
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "google-chrome")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
