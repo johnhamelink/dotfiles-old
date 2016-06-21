@@ -33,8 +33,8 @@ Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby', 'eruby'] }
 
 " Elixir {{{
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-Plug 'Thinca/vim-ref', { 'for': 'elixir' } " For documentation
-Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+Plug 'powerman/vim-plugin-AnsiEsc', { 'for': 'elixir' }
 " }}}
 
 " Rust {{{
@@ -72,7 +72,8 @@ Plug 'osyo-manga/vim-over'
 " }}}
 
 " Colours {{{
-Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
+" Plug 'chriskempson/tomorrow-theme', { 'rtp': 'vim' }
+Plug 'w0ng/vim-hybrid'
 Plug 'junegunn/rainbow_parentheses.vim'
 " }}}
 
@@ -266,7 +267,7 @@ let g:mapleader="\\"
 " Colour Scheme {{{
 syntax enable
 set background=dark
-colorscheme Tomorrow-Night-Bright
+colorscheme hybrid
 
 
 if has("gui_running")
